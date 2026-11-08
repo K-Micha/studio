@@ -1,0 +1,62 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'variables' as var;
+
+/**
+*Converts pixels to rem units.
+*@param {Number} $px Pixel value.
+*@param {Number} $base Root font size.
+*@return {Number} Value in rem.
+*/
+@function px-to-rem($px, $base: 16px) {
+  @return math.div($px, $base) * 1rem;
+}
+
+/**
+*Returns a named theme color.
+*/
+@function color($name) {
+  @return map.get(var.$colors, $name);
+}
+
+/**
+*Returns a named spacing value in rem.
+*/
+@function size($name) {
+  @return px-to-rem(map.get(var.$sizes, $name));
+}
+
+/**
+*Returns a named font size in rem.
+*/
+@function font-size($name) {
+  @return px-to-rem(map.get(var.$font-sizes, $name));
+}
+
+/**
+*Returns a responsive breakpoint.
+*/
+@function breakpoint($name) {
+  @return map.get(var.$breakpoints, $name);
+}
+
+/**
+*Returns a layout dimension in rem.
+*/
+@function layout($name) {
+  @return px-to-rem(map.get(var.$layout, $name));
+}
+
+/**
+*Returns a named font family.
+*/
+@function font($name) {
+  @return map.get(var.$fonts, $name);
+}
+
+/**
+*Calculates a width with horizontal spacing.
+*/
+@function content-width($inline) {
+  @return calc(100% - (#{px-to-rem($inline)} * 2));
+}

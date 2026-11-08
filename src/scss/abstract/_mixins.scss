@@ -1,0 +1,43 @@
+@use 'functions' as fct;
+
+/**
+*Applies a flex layout.
+*/
+@mixin flex(
+  $direction: row,
+  $justify: center,
+  $align: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/**
+*Applies a font family and weight.
+*/
+@mixin typo($font, $weight: 400) {
+  font-family: fct.font($font);
+  font-weight: $weight;
+}
+
+/**
+*Applies transition defaults.
+*/
+@mixin transition(
+  $duration: 250ms,
+  $timing: ease-in-out
+) {
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+}
+
+/**
+*Applies styles up to a breakpoint.
+*/
+@mixin respond($name) {
+  @media (max-width: fct.breakpoint($name)) {
+    @content;
+  }
+}
