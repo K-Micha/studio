@@ -1,0 +1,29 @@
+@use '../../../../scss/abstract/functions' as fct;
+
+.burger {
+  position: relative;
+  display: block;
+  width: fct.size(40);
+  height: fct.size(32);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &__top,
+  &__mid,
+  &__bot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: fct.size(40);
+    height: fct.size(4);
+    background: currentColor;
+    border-radius: 2px;
+    transform-origin: center;
+    transition:
+      width 50ms linear,
+      transform 50ms linear;
+  }
+}
