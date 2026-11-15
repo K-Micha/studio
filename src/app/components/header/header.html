@@ -2,50 +2,54 @@
   <div class="header__inner">
 
     <div class="brand">
-      <img class="brand__img" src="" alt="">
-      <p class="brand__name"></p>
-      <span class="brand__subtitle"></span>
+      <img class="brand__img" [src]="brand.logo()" [alt]="brand.name() + ' Logo'">
+
+      <div class="brand__side">
+        <p class="brand__name">{{ brand.name() }}</p>
+        <span class="brand__subtitle">{{ brand.subtitle() }}</span>
+      </div>
     </div>
 
-    <div class="header__normal">
+    <div class="header__normal header__normal--hidden">
 
-      <nav class="nav" aria-label="Main navigation">
+      <nav #nav class="nav" aria-label="Main navigation" (pointerleave)="hover.leave(nav, line)">
 
         @if (mode.freelancer()) {
-        <div class="nav__item">
+        <div class="nav__item" (pointerenter)="hover.enter($event, nav, line)">
           <p class="nav__text">PORTFOLIO</p>
         </div>
         } @else if (mode.studio()) {
-        <div class="nav__item">
+        <div class="nav__item" (pointerenter)="hover.enter($event, nav, line)">
           <p class="nav__text">HOME</p>
         </div>
         }
 
         @if (mode.freelancer()) {
-        <div class="nav__item">
+        <div class="nav__item" (pointerenter)="hover.enter($event, nav, line)">
           <p class="nav__text">ABOUT ME</p>
         </div>
         } @else if (mode.studio()) {
-        <div class="nav__item">
+        <div class="nav__item" (pointerenter)="hover.enter($event, nav, line)">
           <p class="nav__text">ABOUT US</p>
         </div>
         }
 
-        <div class="nav__item">
+        <div class="nav__item" (pointerenter)="hover.enter($event, nav, line)">
           <p class="nav__text">SERVICES</p>
         </div>
 
         @if (mode.studio()) {
-        <div class="nav__item">
+        <div class="nav__item" (pointerenter)="hover.enter($event, nav, line)">
           <p class="nav__text">TEAM</p>
         </div>
         }
 
-        <div class="nav__item">
+        <div class="nav__item" (pointerenter)="hover.enter($event, nav, line)">
           <p class="nav__text">CONTACT</p>
         </div>
 
-        <span class="nav__line" aria-hidden="true"></span>
+        <span #line class="nav__line" [class.nav__line--animate]="hover.animate()" aria-hidden="true"
+          [style.width.px]="hover.width()" [style.transform]="'translateX(' + hover.x() + 'px)'"></span>
 
       </nav>
 
@@ -85,7 +89,7 @@
 
     </div>
 
-    <div class="header__burger">
+    <div class="header__burger header__burger--hidden">
       <button class="burger" type="button" (click)="burger.toggle()" [attr.aria-expanded]="burger.isOpen()"
         [attr.aria-label]="burger.isOpen() ? 'Menü schließen' : 'Menü öffnen'">
         <span class="burger__top" [style.width.px]="burger.frame().top.w"

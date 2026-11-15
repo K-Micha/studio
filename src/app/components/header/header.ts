@@ -1,6 +1,8 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { WebsiteModeService } from '../../core/website-mode.service';
+import { WebsiteContentService } from '../../core/website-content.service';
 import { BurgerAnimation } from './ts/burger';
+import { HoverAnimation } from './ts/hover-anim';
 
 @Component({
   selector: 'app-header',
@@ -11,11 +13,11 @@ import { BurgerAnimation } from './ts/burger';
 export class Header {
   readonly mode = inject(WebsiteModeService);
   readonly burger = new BurgerAnimation();
+  readonly hover = new HoverAnimation();
+  readonly brand = inject(WebsiteContentService);
 
   readonly location = signal('Köstendorf');
-  readonly locations = computed(() =>
-    ['Köstendorf', 'Salzburg', 'Wien'].slice(0, this.mode.locationCount())
-  );
+  readonly locations = computed(() => ['Köstendorf', 'Salzburg', 'Wien'].slice(0, this.mode.locationCount()));
   readonly isLocationOpen = signal(false);
 
   readonly language = signal('DE');

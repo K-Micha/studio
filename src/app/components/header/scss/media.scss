@@ -1,0 +1,13 @@
+@use '../../../../scss/abstract/mixins' as mx;
+
+@media (max-width: 990px) {
+    .header .header__normal {
+        display: none;
+    }
+}
+
+@media (min-width: 991px) {
+    .header .header__burger {
+        display: none;
+    }
+}

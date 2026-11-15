@@ -1,6 +1,7 @@
 @use '../../../../scss/abstract/functions' as fct;
 
 .burger {
+  right: 30px;
   position: relative;
   display: block;
   width: fct.size(40);
@@ -18,7 +19,7 @@
     left: 50%;
     top: 50%;
     width: fct.size(40);
-    height: fct.size(4);
+    height: 2.5px;
     background: currentColor;
     border-radius: 2px;
     transform-origin: center;

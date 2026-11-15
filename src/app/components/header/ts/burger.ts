@@ -15,30 +15,31 @@ type BurgerFrame = {
 
 const FRAME_DELAY = 50;
 
+
 const FRAMES: BurgerFrame[] = [
   {
-    top: { w: 40, x: 0, y: -14, r: 0 },
-    mid: { w: 40, x: 0, y: 0, r: 0 },
-    bot: { w: 40, x: 0, y: 14, r: 0 }
+    top: { w: 30, x: 0, y: -10, r: 0 },
+    mid: { w: 30, x: 0, y: 0, r: 0 },
+    bot: { w: 30, x: 0, y: 10, r: 0 }
   },
   {
-    top: { w: 20, x: 0, y: -14, r: 0 },
-    mid: { w: 40, x: 0, y: 0, r: 0 },
-    bot: { w: 20, x: 0, y: 14, r: 0 }
+    top: { w: 15, x: 0, y: -10, r: 0 },
+    mid: { w: 30, x: 0, y: 0, r: 0 },
+    bot: { w: 15, x: 0, y: 10, r: 0 }
   },
   {
-    top: { w: 20, x: 10, y: -14, r: 0 },
-    mid: { w: 40, x: 0, y: 0, r: 0 },
-    bot: { w: 20, x: -10, y: 14, r: 0 }
+    top: { w: 15, x: 7.5, y: -10, r: 0 },
+    mid: { w: 30, x: 0, y: 0, r: 0 },
+    bot: { w: 15, x: -7.5, y: 10, r: 0 }
   },
   {
-    top: { w: 20, x: 10, y: -10, r: -45 },
-    mid: { w: 40, x: 0, y: 0, r: 45 },
-    bot: { w: 20, x: -10, y: 10, r: -45 }
+    top: { w: 15, x: 7.5, y: -7.5, r: -45 },
+    mid: { w: 30, x: 0, y: 0, r: 45 },
+    bot: { w: 15, x: -7.5, y: 7.5, r: -45 }
   },
   {
-    top: { w: 40, x: 0, y: 0, r: -45 },
-    mid: { w: 40, x: 0, y: 0, r: 45 },
+    top: { w: 30, x: 0, y: 0, r: -45 },
+    mid: { w: 30, x: 0, y: 0, r: 45 },
     bot: { w: 0, x: 0, y: 0, r: 0 }
   }
 ];
