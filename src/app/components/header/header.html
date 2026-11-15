@@ -1,1 +1,108 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header__inner">
+
+    <div class="brand">
+      <img class="brand__img" src="" alt="">
+      <p class="brand__name"></p>
+      <span class="brand__subtitle"></span>
+    </div>
+
+    <div class="header__normal">
+
+      <nav class="nav" aria-label="Main navigation">
+
+        @if (mode.freelancer()) {
+        <div class="nav__item">
+          <p class="nav__text">PORTFOLIO</p>
+          <span class="nav__line"></span>
+        </div>
+        } @else if (mode.studio()) {
+        <div class="nav__item">
+          <p class="nav__text">HOME</p>
+          <span class="nav__line"></span>
+        </div>
+        }
+
+        @if (mode.freelancer()) {
+        <div class="nav__item">
+          <p class="nav__text">ABOUT ME</p>
+          <span class="nav__line"></span>
+        </div>
+        } @else if (mode.studio()) {
+        <div class="nav__item">
+          <p class="nav__text">ABOUT US</p>
+          <span class="nav__line"></span>
+        </div>
+        }
+
+        <div class="nav__item">
+          <p class="nav__text">SERVICES</p>
+          <span class="nav__line"></span>
+        </div>
+
+        @if (mode.studio()) {
+        <div class="nav__item">
+          <p class="nav__text">TEAM</p>
+          <span class="nav__line"></span>
+        </div>
+        }
+
+        <div class="nav__item">
+          <p class="nav__text">CONTACT</p>
+          <span class="nav__line"></span>
+        </div>
+
+      </nav>
+
+      <div class="lang">
+        <button class="lang__btn" type="button" (click)="isLanguageOpen.set(!isLanguageOpen())">
+          {{ language() }}
+        </button>
+
+        @if (isLanguageOpen()) {
+        <div class="lang__menu">
+          @for (code of languages(); track code) {
+          <button class="lang__option" type="button" (click)="selectLanguage(code)">
+            {{ code }}
+          </button>
+          }
+        </div>
+        }
+      </div>
+
+      @if (mode.multipleLocations()) {
+      <div class="location">
+        <button class="location__btn" type="button" (click)="isLocationOpen.set(!isLocationOpen())">
+          {{ location() }}
+        </button>
+
+        @if (isLocationOpen()) {
+        <div class="location__menu">
+          @for (name of locations(); track name) {
+          <button class="location__option" type="button" (click)="selectLocation(name)">
+            {{ name }}
+          </button>
+          }
+        </div>
+        }
+      </div>
+      }
+
+    </div>
+
+    <div class="header__burger">
+      <button class="burger" type="button" (click)="burger.toggle()" [attr.aria-expanded]="burger.isOpen()"
+        [attr.aria-label]="burger.isOpen() ? 'Menü schließen' : 'Menü öffnen'">
+        <span class="burger__top" [style.width.px]="burger.frame().top.w"
+          [style.transform]="burger.transform(burger.frame().top)"></span>
+
+        <span class="burger__mid" [style.width.px]="burger.frame().mid.w"
+          [style.transform]="burger.transform(burger.frame().mid)"></span>
+
+        <span class="burger__bot" [style.width.px]="burger.frame().bot.w"
+          [style.transform]="burger.transform(burger.frame().bot)"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
