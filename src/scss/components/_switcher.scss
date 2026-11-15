@@ -1,0 +1,123 @@
+@use '../abstract/functions' as fct;
+@use '../abstract/mixins' as mx;
+
+.switcher {
+    position: relative;
+    z-index: 1;
+    width: max-content;
+    height: fct.size(48);
+    flex-shrink: 0;
+
+    &--open {
+        z-index: 100;
+    }
+
+    &__panel {
+        position: relative;
+        width: 100%;
+        font-weight: 500;
+        box-sizing: border-box;
+        border: 1.5px solid #c5a878;
+        border-radius: fct.size(40);
+        background: transparent;
+        box-shadow:
+            0 0 0 0.5px rgba(0, 0, 0, 0.45),
+            inset 0 0 0 0.5px rgba(0, 0, 0, 0.30),
+            inset 0 1px 0 rgba(255, 245, 220, 0.55),
+            0 1px 3px rgba(197, 168, 120, 0.18);
+        backdrop-filter: blur(12px);
+        transition: border-radius 300ms ease;
+
+        &:hover {
+            font-weight: 500;
+            box-shadow:
+                0 0 0 0.5px fct.color(nav-hover),
+                inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+        }
+    }
+
+    &--open &__panel {
+        border-radius: fct.size(24);
+    }
+
+    &__btn {
+        @include mx.flex(row, space-between, center);
+        width: 100%;
+        height: 44px;
+        box-sizing: border-box;
+        gap: fct.size(16);
+        padding: fct.size(8) fct.size(20);
+        border: none;
+        outline: none;
+        appearance: none;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        white-space: nowrap;
+        cursor: pointer;
+        font-weight: 500;
+
+        &:focus-visible {
+            outline: 2px solid #c5a878;
+            outline-offset: -5px;
+            border-radius: fct.size(40);
+        }
+
+        &::after {
+            content: '';
+            width: 7px;
+            height: 7px;
+            flex-shrink: 0;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: translateY(-2px) rotate(45deg);
+            transition: transform 250ms ease;
+        }
+    }
+
+    &--open &__btn::after {
+        transform: translateY(2px) rotate(225deg);
+    }
+
+    &__menu {
+        position: relative;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition:
+            max-height 300ms ease,
+            visibility 0s linear 300ms;
+    }
+
+    &--open &__menu {
+        max-height: 240px;
+        visibility: visible;
+        transition:
+            max-height 300ms ease,
+            visibility 0s;
+    }
+
+    &__options {
+        @include mx.flex(column, center, stretch);
+        gap: fct.size(4);
+        padding: fct.size(4) fct.size(8) fct.size(12);
+        font-weight: 500;
+    }
+
+    &__option {
+        padding: fct.size(4) fct.size(12);
+        border: 0;
+        border-radius: fct.size(8);
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        text-align: left;
+        white-space: nowrap;
+        cursor: pointer;
+
+        &:hover,
+        &:focus-visible {
+            background: rgba(197, 168, 120, 0.15);
+        }
+    }
+}

@@ -1,4 +1,6 @@
-$colors: ();
+$colors: (
+  nav-hover: #C4AA7F
+  );
 
 $sizes: (
   4: 4px,
@@ -30,9 +32,11 @@ $font-sizes: (
   100: 100px
 );
 
-$fonts: ();
+$fonts: (
+);
 
-$breakpoints: ();
+$breakpoints: (
+);
 
 $layout: (
   content-max: 1440px

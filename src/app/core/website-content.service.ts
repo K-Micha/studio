@@ -5,7 +5,7 @@ import { Injectable, signal } from '@angular/core';
 */
 @Injectable({ providedIn: 'root' })
 export class WebsiteContentService {
-  readonly logo = signal('assets/img/mk-monogramm.png');
+  readonly logo = signal('assets/img/L&S-Monogram.png');
   readonly name = signal('LISA SCHÖNFELD');
   readonly subtitle = signal('MAKE-UP ARTISTIN');
 }

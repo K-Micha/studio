@@ -3,6 +3,7 @@
 @use '../../../../scss/abstract/functions' as fct;
 @use '../../../../scss/abstract/mixins' as mx;
 @use '../../../../scss/abstract/variables' as var;
+@use '../../../../scss/components/switcher';
 
 .header {
     padding-top: fct.size(32);
@@ -13,7 +14,7 @@
     }
 
     &__normal {
-        @include mx.flex(row, center, flex-start);
+        @include mx.flex(row, center, baseline);
         gap: fct.size(32);
     }
 
@@ -37,6 +38,15 @@
 
     &__text {
         margin: 0;
+        font-weight: 400;
+        transition:
+            color 250ms ease,
+            font-weight 250ms ease;
+    }
+
+    &__item:hover &__text {
+        color: fct.color(nav-hover);
+        font-weight: 600;
     }
 
     &__line {
@@ -45,7 +55,7 @@
         bottom: 0;
         width: 0;
         height: 3px;
-        background: currentColor;
+        background: fct.color(nav-hover);
         border-radius: 2px;
         pointer-events: none;
 
@@ -58,32 +68,29 @@
 }
 
 .brand {
+    position: relative;
     @include mx.flex(row, center, flex-start);
-    gap: fct.size(16);
+    padding-top: fct.size(12);
 
     &__img {
+        position: absolute;
+        top: calc(50% + 6px);
+        left: 0;
+        z-index: 2;
         width: fct.size(64);
+        height: auto;
         object-fit: contain;
+        transform: translateY(-50%);
     }
 
     &__side {
         @include mx.flex(column, center, flex-start);
         gap: fct.size(4);
+        margin-left: fct.px-to-rem(80px);
     }
 
     &__name,
     &__subtitle {
         margin: 0;
-    }
-}
-
-.lang {
-    position: relative;
-
-    &__menu {
-        @include mx.flex(column, center, stretch);
-        position: absolute;
-        top: 100%;
-        z-index: 50;
     }
 }
