@@ -1,6 +1,6 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { WebsiteModeService } from '../../core/website-mode.service';
-import { BurgerAnimation } from './burger';
+import { BurgerAnimation } from './ts/burger';
 
 @Component({
   selector: 'app-header',

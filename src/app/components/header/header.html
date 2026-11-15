@@ -14,43 +14,38 @@
         @if (mode.freelancer()) {
         <div class="nav__item">
           <p class="nav__text">PORTFOLIO</p>
-          <span class="nav__line"></span>
         </div>
         } @else if (mode.studio()) {
         <div class="nav__item">
           <p class="nav__text">HOME</p>
-          <span class="nav__line"></span>
         </div>
         }
 
         @if (mode.freelancer()) {
         <div class="nav__item">
           <p class="nav__text">ABOUT ME</p>
-          <span class="nav__line"></span>
         </div>
         } @else if (mode.studio()) {
         <div class="nav__item">
           <p class="nav__text">ABOUT US</p>
-          <span class="nav__line"></span>
         </div>
         }
 
         <div class="nav__item">
           <p class="nav__text">SERVICES</p>
-          <span class="nav__line"></span>
         </div>
 
         @if (mode.studio()) {
         <div class="nav__item">
           <p class="nav__text">TEAM</p>
-          <span class="nav__line"></span>
         </div>
         }
 
         <div class="nav__item">
           <p class="nav__text">CONTACT</p>
-          <span class="nav__line"></span>
         </div>
+
+        <span class="nav__line" aria-hidden="true"></span>
 
       </nav>
 

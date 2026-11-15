@@ -1,4 +1,3 @@
-
 import { signal } from '@angular/core';
 
 type BurgerLine = {
