@@ -1,10 +1,89 @@
 @use 'burger.scss';
+@use 'media.scss';
 @use '../../../../scss/abstract/functions' as fct;
 @use '../../../../scss/abstract/mixins' as mx;
 @use '../../../../scss/abstract/variables' as var;
 
-.header{
-    &__burger{
-        opacity: 0;
+.header {
+    padding-top: fct.size(32);
+
+    &__inner {
+        @include mx.flex(row, space-between, flex-start);
+        width: 100%;
+    }
+
+    &__normal {
+        @include mx.flex(row, center, flex-start);
+        gap: fct.size(32);
+    }
+
+    &__burger {
+        @include mx.flex(row, center, center);
+    }
+}
+
+.nav {
+    @include mx.flex(row, center, center);
+    position: relative;
+    gap: fct.size(32);
+    padding-bottom: fct.size(12);
+    overflow: clip;
+    cursor: pointer;
+
+    &__item {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    &__text {
+        margin: 0;
+    }
+
+    &__line {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 3px;
+        background: currentColor;
+        border-radius: 2px;
+        pointer-events: none;
+
+        &--animate {
+            transition:
+                transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+                width 380ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+    }
+}
+
+.brand {
+    @include mx.flex(row, center, flex-start);
+    gap: fct.size(16);
+
+    &__img {
+        width: fct.size(64);
+        object-fit: contain;
+    }
+
+    &__side {
+        @include mx.flex(column, center, flex-start);
+        gap: fct.size(4);
+    }
+
+    &__name,
+    &__subtitle {
+        margin: 0;
+    }
+}
+
+.lang {
+    position: relative;
+
+    &__menu {
+        @include mx.flex(column, center, stretch);
+        position: absolute;
+        top: 100%;
+        z-index: 50;
     }
 }
