@@ -1,1 +1,11 @@
-<p>footer works!</p>
+<button (click)="mode.businessType.set('freelancer')">
+  Freelancer
+</button>
+
+<button (click)="mode.businessType.set('studio'); mode.locationCount.set(1)">
+  Betrieb
+</button>
+
+<button (click)="mode.businessType.set('studio'); mode.locationCount.set(3)">
+  Betrieb (3 Standorte)
+</button>
