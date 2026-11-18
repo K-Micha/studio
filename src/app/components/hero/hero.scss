@@ -5,7 +5,7 @@
 .hero {
     position: relative;
     width: 100%;
-    height: auto;
+    height: min(100dvh, 750px);
     aspect-ratio: 4 / 3;
 
     &--studio {
@@ -24,12 +24,12 @@
         box-sizing: border-box;
 
         @include mx.flex(column, space-between, flex-start);
-        gap: fct.size(40);
+        gap: fct.size(24);
     }
 
     &__label {
         margin: 0;
-        font-size: fct.px-to-rem(48px);
+        font-size: fct.px-to-rem(24px);
         font-weight: 500;
         line-height: 1.15;
         letter-spacing: 0.01em;
@@ -37,7 +37,7 @@
 
     &__title {
         margin: 0;
-        font-size: fct.px-to-rem(100px);
+        font-size: fct.px-to-rem(80px);
         font-weight: 600;
         line-height: 1.02;
         letter-spacing: -0.025em;
@@ -47,7 +47,7 @@
     &__desc {
         margin: 0;
         max-width: 100%;
-        font-size: fct.px-to-rem(32px);
+        font-size: fct.px-to-rem(24px);
         font-weight: 400;
         line-height: 1.3;
         white-space: pre-line;

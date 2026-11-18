@@ -5,13 +5,15 @@ import { Hero } from './components/hero/hero';
 import { Footer } from './components/footer/footer';
 import { WebsiteModeService } from './core/website-mode.service';
 import { WebsiteContentService } from './core/website-content.service';
+import { Mouse } from './animations/mouse/mouse';
+import { Touch } from './animations/touch/touch';
 
 /**
 *Root component of the StudioFlow website.
 */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Hero, Footer],
+  imports: [RouterOutlet, Header, Hero, Footer, Mouse, Touch],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
