@@ -6,7 +6,15 @@
 @use '../../../../scss/components/dropdown';
 
 .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
     padding-top: fct.size(32);
+    padding-inline: fct.size(48);
+    box-sizing: border-box;
 
     &__inner {
         @include mx.flex(row, space-between, flex-start);
