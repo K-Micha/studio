@@ -1,1 +1,13 @@
-<p>hero works!</p>
+<section class="hero" [class.hero--studio]="mode.studio()">
+    <div class="hero__content">
+        <span class="hero__label">{{ hero().label }}</span>
+
+        <h1 class="hero__title">{{ hero().title }}</h1>
+
+        <p class="hero__desc">{{ hero().description }}</p>
+
+        <div class="hero__socials">
+            <!-- Später dynamisch aus den Kundeneinstellungen -->
+        </div>
+    </div>
+</section>

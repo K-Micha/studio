@@ -1,4 +1,26 @@
-<app-header />
-<app-hero />
+<div class="website-background"
+  [class.website-background--portrait]="content.hero().layout === 'portrait'"
+  [class.website-background--layer]="content.hero().layout === 'layer'"
+  [style.background-color]="content.hero().backgroundColor"
+  [style.color]="content.hero().textColor">
+
+  <div class="website-background__image"
+    [style.background-image]="'url(' + content.hero().image + ')'">
+  </div>
+
+  <app-header />
+
+  <main>
+    @if (mode.freelancer()) {
+      <app-hero />
+      <!-- Freelancer: dynamische Seiten -->
+    } @else if (mode.studio()) {
+      <app-hero />
+      <!-- Studio: One-Page -->
+    }
+  </main>
+
+</div>
+
 <app-footer />
 <router-outlet />

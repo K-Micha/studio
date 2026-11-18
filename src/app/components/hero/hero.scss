@@ -1,0 +1,61 @@
+@use '../../../scss/abstract/functions' as fct;
+@use '../../../scss/abstract/mixins' as mx;
+@use '../../../scss/abstract/variables' as var;
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+
+    &--studio {
+        height: 80dvh;
+        aspect-ratio: auto;
+    }
+
+    &__content {
+        position: absolute;
+        z-index: 1;
+        top: calc(86px + 5dvh);
+        left: 0;
+        width: 50%;
+        height: auto;
+        padding: fct.size(40);
+        box-sizing: border-box;
+
+        @include mx.flex(column, space-between, flex-start);
+        gap: fct.size(40);
+    }
+
+    &__label {
+        margin: 0;
+        font-size: fct.px-to-rem(48px);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: 0.01em;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: fct.px-to-rem(100px);
+        font-weight: 600;
+        line-height: 1.02;
+        letter-spacing: -0.025em;
+        white-space: pre-line;
+    }
+
+    &__desc {
+        margin: 0;
+        max-width: 100%;
+        font-size: fct.px-to-rem(32px);
+        font-weight: 400;
+        line-height: 1.3;
+        white-space: pre-line;
+    }
+
+    &__socials {
+        @include mx.flex(row, flex-start, center);
+        gap: fct.size(16);
+        margin-top: fct.size(16);
+    }
+}

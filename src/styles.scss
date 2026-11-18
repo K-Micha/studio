@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'scss/abstract/functions' as fct;
+
+app-root {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: fct.layout(content-max);
+    margin-inline: auto;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}

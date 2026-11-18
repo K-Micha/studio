@@ -4,6 +4,7 @@ import { Header } from './components/header/header';
 import { Hero } from './components/hero/hero';
 import { Footer } from './components/footer/footer';
 import { WebsiteModeService } from './core/website-mode.service';
+import { WebsiteContentService } from './core/website-content.service';
 
 /**
 *Root component of the StudioFlow website.
@@ -16,4 +17,5 @@ import { WebsiteModeService } from './core/website-mode.service';
 })
 export class App {
   readonly mode = inject(WebsiteModeService);
+  readonly content = inject(WebsiteContentService);
 }
