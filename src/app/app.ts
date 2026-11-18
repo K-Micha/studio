@@ -5,7 +5,6 @@ import { Hero } from './components/hero/hero';
 import { Footer } from './components/footer/footer';
 import { WebsiteModeService } from './core/website-mode.service';
 import { WebsiteContentService } from './core/website-content.service';
-import { Mouse } from './animations/mouse/mouse';
 import { Touch } from './animations/touch/touch';
 
 /**
@@ -13,7 +12,7 @@ import { Touch } from './animations/touch/touch';
 */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Hero, Footer, Mouse, Touch],
+  imports: [RouterOutlet, Header, Hero, Footer, Touch],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

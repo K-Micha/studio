@@ -1,0 +1,153 @@
+@use '../../../scss/abstract/functions' as fct;
+@use '../../../scss/abstract/mixins' as mx;
+
+.touch {
+    @include mx.flex(column, center, center);
+    gap: fct.size(16);
+    color: inherit;
+    transition: opacity 650ms ease;
+
+    &--hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &__magnet {
+        width: fct.px-to-rem(100px);
+        height: fct.px-to-rem(120px);
+        will-change: transform;
+    }
+
+    &__svg {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        overflow: visible;
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+    }
+
+    &__wave {
+        fill: none;
+        stroke: currentColor;
+        opacity: 0;
+        transform-box: view-box;
+        transform-origin: center;
+        animation: touch-wave-down 2.8s ease-out infinite;
+
+        &--inner {
+            stroke-width: 2;
+        }
+
+        &--middle {
+            stroke-width: 1.6;
+            animation-delay: -0.9s;
+        }
+
+        &--outer {
+            stroke-width: 1.2;
+            animation-delay: -1.8s;
+        }
+    }
+
+    &__letters {
+        @include mx.flex(row, center, center);
+        gap: fct.px-to-rem(2px);
+        min-height: fct.px-to-rem(26px);
+        white-space: nowrap;
+
+        span:not(.touch__space) {
+            display: inline-block;
+            flex-shrink: 0;
+            font-size: fct.px-to-rem(16px);
+            font-weight: 600;
+            text-shadow:
+                0 2px 5px rgba(0, 0, 0, 0.3),
+                0 5px 12px rgba(0, 0, 0, 0.14);
+            opacity: 0;
+        }
+    }
+
+    &__space {
+        width: fct.px-to-rem(7px);
+        flex-shrink: 0;
+    }
+
+    @for $i from 1 through 11 {
+        @if $i != 7 {
+            $order: $i - 1;
+
+            @if $i > 7 {
+                $order: $i - 2;
+            }
+
+            $enter: 5 + $order * 2.5;
+            $entered: $enter + 4.5;
+            $exit: 60 + $order * 2.4;
+            $exited: $exit + 5;
+
+            &__letters span:nth-child(#{$i}) {
+                animation: touch-letter-#{$i} 9s linear infinite;
+            }
+
+            @at-root {
+                @keyframes touch-letter-#{$i} {
+                    0%, #{$enter * 1%} {
+                        opacity: 0;
+                        transform: translateX(-7px);
+                    }
+
+                    #{$entered * 1%}, #{$exit * 1%} {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+
+                    #{$exited * 1%}, 100% {
+                        opacity: 0;
+                        transform: translateX(12px);
+                    }
+                }
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &__wave,
+        &__letters span {
+            animation: none !important;
+        }
+
+        &__wave--middle {
+            opacity: 0.5;
+        }
+
+        &__letters span:not(.touch__space) {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+@keyframes touch-wave-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.7);
+    }
+
+    20% {
+        opacity: 0.65;
+    }
+
+    75% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(18px) scale(1.15);
+    }
+}
