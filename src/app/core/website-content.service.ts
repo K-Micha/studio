@@ -1,47 +1,17 @@
 import { computed, inject, Injectable } from '@angular/core';
 import { WebsiteModeService } from './website-mode.service';
+import { FREELANCER_CONTENT } from './content/freelancer.content';
+import { STUDIO_CONTENT } from './content/studio.content';
 
 /**
-*Provides website branding and hero content.
+*Provides the active website content based on business type.
 */
 @Injectable({ providedIn: 'root' })
 export class WebsiteContentService {
   private readonly mode = inject(WebsiteModeService);
 
-  private readonly freelancerData = {
-    logo: 'assets/img/L&S-Monogram.png',
-    name: 'LISA SCHÖNFELD',
-    subtitle: 'MAKE-UP ARTISTIN',
-    hero: {
-      layout: 'portrait' as const,
-      image: 'assets/img/hero.png',
-      backgroundColor: 'rgb(14, 10, 7)',
-      textColor: '#F5EEE5',
-      label: 'BEAUTY IS ART.',
-      title: 'I enhance beauty.\nI reveal confidence.',
-      description: 'Professional makeup \nI for special occasions, \nI photoshoots & events.',
-      button: 'MEIN PORTFOLIO'
-    }
-  };
-
-  private readonly studioData = {
-    logo: 'assets/img/L&S-Monogram.png',
-    name: 'STUDIO DEMO',
-    subtitle: 'HAIR & BEAUTY',
-    hero: {
-      layout: 'layer' as const,
-      image: 'assets/img/hero.png',
-      backgroundColor: 'rgb(14, 10, 7)',
-      textColor: '#F5EEE5',
-      label: '',
-      title: 'Köstendorf',
-      description: 'Dein Friseursalon.\nPersönlich. Modern. Nah.',
-      button: 'TERMIN BUCHEN'
-    }
-  };
-
   readonly content = computed(() =>
-    this.mode.freelancer() ? this.freelancerData : this.studioData
+    this.mode.freelancer() ? FREELANCER_CONTENT : STUDIO_CONTENT
   );
 
   readonly logo = computed(() => this.content().logo);
@@ -49,4 +19,5 @@ export class WebsiteContentService {
   readonly subtitle = computed(() => this.content().subtitle);
 
   readonly hero = computed(() => this.content().hero);
+  readonly services = computed(() => this.content().services);
 }
