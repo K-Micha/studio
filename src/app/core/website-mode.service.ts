@@ -1,4 +1,3 @@
-
 import { computed, Injectable, signal } from '@angular/core';
 
 export type BusinessType = 'freelancer' | 'studio';
@@ -13,6 +12,7 @@ export class WebsiteModeService {
   readonly businessType = signal<BusinessType>('freelancer');
   readonly isDemo = signal(false);
   readonly locationCount = signal(1);
+  readonly serviceCount = signal(4);
 
   readonly freelancer = computed(() => this.businessType() === 'freelancer');
   readonly studio = computed(() => this.businessType() === 'studio');

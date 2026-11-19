@@ -45,6 +45,12 @@ export const FREELANCER_CONTENT = {
         title: 'SFX & CREATIVE',
         description: 'Special effects and creative transformations.',
         image: 'assets/img/services/sfx.webp'
+      },
+      {
+        id: 'eyes',
+        title: 'EYES',
+        description: 'Expressive eye makeup that makes every glance unforgettable.',
+        image: 'assets/img/services/eyes.webp'
       }
     ]
   }

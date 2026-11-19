@@ -1,4 +1,3 @@
-
 import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { WebsiteModeService } from '../../core/website-mode.service';
 
@@ -14,7 +13,6 @@ export class DemoAside {
   readonly mode = inject(WebsiteModeService);
   readonly isOpen = signal(false);
   readonly isNear = signal(false);
-  readonly serviceCount = signal(4);
   readonly serviceCounts = [1, 2, 3, 4, 5, 6, 7, 8];
 
   private readonly element = inject(ElementRef<HTMLElement>);
@@ -35,12 +33,12 @@ export class DemoAside {
   }
 
   /**
-  *Ändert die Anzahl der Demo-Leistungen.
+  *Ändert die Anzahl der angezeigten Demo-Leistungen.
   *@param count Gewünschte Anzahl.
   */
   setServiceCount(count: number): void {
     if (count < 1 || count > 8) return;
-    this.serviceCount.set(count);
+    this.mode.serviceCount.set(count);
   }
 
   /**

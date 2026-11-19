@@ -1,4 +1,3 @@
-
 <aside
   class="demo-aside"
   [class.demo-aside--open]="isOpen()"
@@ -75,7 +74,7 @@
       <div class="demo-aside__section-heading">
         <h3 class="demo-aside__subtitle">Services</h3>
         <span class="demo-aside__section-label">
-          {{ serviceCount() }} ausgewählt
+          {{ mode.serviceCount() }} ausgewählt
         </span>
       </div>
 
@@ -87,15 +86,14 @@
         @for (count of serviceCounts; track count) {
           <button
             class="demo-aside__service-button"
-            [class.demo-aside__service-button--active]="serviceCount() === count"
-            [attr.aria-pressed]="serviceCount() === count"
+            [class.demo-aside__service-button--active]="mode.serviceCount() === count"
+            [attr.aria-pressed]="mode.serviceCount() === count"
             type="button"
             (click)="setServiceCount(count)">
             {{ count }}
           </button>
         }
       </div>
-
     </section>
 
     <footer class="demo-aside__footer">

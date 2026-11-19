@@ -1,0 +1,45 @@
+<section class="services">
+    <div class="services__container">
+        <header class="services__header">
+            <span class="services__eyebrow">
+                {{ content().eyebrow }}
+            </span>
+
+            <div class="services__heading">
+                <h2>{{ content().title }}</h2>
+                <p>{{ content().description }}</p>
+            </div>
+        </header>
+
+        <div
+            class="services__list"
+            [class.services__list--horizontal]="visibleItems().length <= 2"
+            [class.services__list--grid]="visibleItems().length >= 3 && visibleItems().length <= 4"
+            [class.services__list--carousel]="visibleItems().length >= 5">
+
+            @for (item of visibleItems(); track item.id) {
+                <article class="services__card">
+                    <button
+                        class="services__preview"
+                        type="button"
+                        [attr.aria-label]="'View ' + item.title + ' gallery'">
+
+                        <img
+                            class="services__image"
+                            [src]="item.image"
+                            [alt]="item.title">
+                    </button>
+
+                    <div class="services__details">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+
+                        <a class="services__link" href="#">
+                            LEARN MORE
+                        </a>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
