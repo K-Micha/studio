@@ -1,0 +1,106 @@
+
+<aside
+  class="demo-aside"
+  [class.demo-aside--open]="isOpen()"
+  [class.demo-aside--near]="isNear()">
+
+  <button
+    class="demo-aside__toggle"
+    type="button"
+    (click)="toggleAside()"
+    (mouseenter)="setNear(true)"
+    (mouseleave)="setNear(false)"
+    [attr.aria-expanded]="isOpen()"
+    [attr.aria-label]="isOpen() ? 'Demo schließen' : 'Demo öffnen'">
+
+    <span class="demo-aside__viewport" aria-hidden="true">
+      <span class="demo-aside__arrow">
+        <span class="demo-aside__arm demo-aside__arm--top"></span>
+        <span class="demo-aside__arm demo-aside__arm--bottom"></span>
+      </span>
+
+      <span class="demo-aside__arrow">
+        <span class="demo-aside__arm demo-aside__arm--top"></span>
+        <span class="demo-aside__arm demo-aside__arm--bottom"></span>
+      </span>
+    </span>
+  </button>
+
+  <div class="demo-aside__content">
+    <header class="demo-aside__header">
+      <span class="demo-aside__eyebrow">DEMO CONTROLS</span>
+      <h2 class="demo-aside__title">StudioFlow Demo</h2>
+      <p class="demo-aside__description">
+        Passe die Website-Darstellung live an.
+      </p>
+    </header>
+
+    <section class="demo-aside__section">
+      <div class="demo-aside__section-heading">
+        <h3 class="demo-aside__subtitle">Business Mode</h3>
+        <span class="demo-aside__section-label">Website-Typ</span>
+      </div>
+
+      <div class="demo-aside__modes">
+        <button
+          class="demo-aside__mode"
+          [class.demo-aside__mode--active]="mode.businessType() === 'freelancer'"
+          [attr.aria-pressed]="mode.businessType() === 'freelancer'"
+          type="button"
+          (click)="mode.businessType.set('freelancer')">
+          Freelancer
+        </button>
+
+        <button
+          class="demo-aside__mode"
+          [class.demo-aside__mode--active]="mode.businessType() === 'studio' && mode.locationCount() === 1"
+          [attr.aria-pressed]="mode.businessType() === 'studio' && mode.locationCount() === 1"
+          type="button"
+          (click)="mode.businessType.set('studio'); mode.locationCount.set(1)">
+          Betrieb
+        </button>
+
+        <button
+          class="demo-aside__mode"
+          [class.demo-aside__mode--active]="mode.businessType() === 'studio' && mode.locationCount() === 3"
+          [attr.aria-pressed]="mode.businessType() === 'studio' && mode.locationCount() === 3"
+          type="button"
+          (click)="mode.businessType.set('studio'); mode.locationCount.set(3)">
+          Betrieb (3 Standorte)
+        </button>
+      </div>
+    </section>
+
+    <section class="demo-aside__section">
+      <div class="demo-aside__section-heading">
+        <h3 class="demo-aside__subtitle">Services</h3>
+        <span class="demo-aside__section-label">
+          {{ serviceCount() }} ausgewählt
+        </span>
+      </div>
+
+      <p class="demo-aside__description">
+        Anzahl der angezeigten Leistungen
+      </p>
+
+      <div class="demo-aside__service-grid">
+        @for (count of serviceCounts; track count) {
+          <button
+            class="demo-aside__service-button"
+            [class.demo-aside__service-button--active]="serviceCount() === count"
+            [attr.aria-pressed]="serviceCount() === count"
+            type="button"
+            (click)="setServiceCount(count)">
+            {{ count }}
+          </button>
+        }
+      </div>
+
+    </section>
+
+    <footer class="demo-aside__footer">
+      <span class="demo-aside__status-dot"></span>
+      Demo-Einstellungen
+    </footer>
+  </div>
+</aside>

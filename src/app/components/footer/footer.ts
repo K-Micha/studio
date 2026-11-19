@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { WebsiteModeService } from '../../core/website-mode.service';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-footer',
@@ -8,5 +8,4 @@ import { WebsiteModeService } from '../../core/website-mode.service';
   styleUrl: './footer.scss',
 })
 export class Footer {
-   readonly mode = inject(WebsiteModeService);
 }

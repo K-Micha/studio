@@ -6,13 +6,15 @@ import { Footer } from './components/footer/footer';
 import { WebsiteModeService } from './core/website-mode.service';
 import { WebsiteContentService } from './core/website-content.service';
 import { Touch } from './animations/touch/touch';
+import { Services } from './components/services/services';
+import { DemoAside } from './demo/demo-aside/demo-aside';
 
 /**
 *Root component of the StudioFlow website.
 */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Hero, Footer, Touch],
+  imports: [RouterOutlet, Header, Hero, Footer, Touch, Services, DemoAside],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
