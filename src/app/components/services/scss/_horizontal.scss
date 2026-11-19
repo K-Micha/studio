@@ -1,0 +1,90 @@
+@use '../../../../scss/abstract/mixins' as mx;
+
+.single {
+    display: grid;
+    grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+
+    &__heading {
+        @include mx.flex(column, flex-start, flex-start);
+        gap: 32px;
+        min-width: 0;
+
+        h2 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        p {
+            margin: 0;
+            font-size: 24px;
+            line-height: 1.4;
+        }
+    }
+
+    &__list {
+        width: 100%;
+        min-width: 0;
+    }
+
+    &__wrapper {
+        @include mx.flex(row, flex-end, center);
+        width: 100%;
+        min-width: 0;
+    }
+
+    &__card {
+        @include mx.flex(row, flex-start, stretch);
+        gap: 24px;
+        width: fit-content;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    &__preview {
+        flex: 0 0 clamp(110px, 20vw, 220px);
+        width: clamp(110px, 20vw, 220px);
+        max-width: 100%;
+    }
+
+    & &__details {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 1fr 1fr auto;
+        row-gap: 12px;
+        flex: 0 1 300px;
+        align-self: stretch;
+        min-width: 0;
+        padding: 0;
+
+        h3 {
+            grid-column: 1;
+            grid-row: 1;
+            align-self: start;
+            margin: 0;
+            font-size: 36px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        p {
+            grid-column: 1;
+            grid-row: 2;
+            align-self: center;
+            margin: 0;
+            font-size: 24px;
+            line-height: 1.5;
+        }
+    }
+
+    & &__action {
+        grid-column: 1;
+        grid-row: 4;
+        align-self: end;
+        justify-self: start;
+        margin-top: -30px;
+    }
+}

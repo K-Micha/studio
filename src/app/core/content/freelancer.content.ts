@@ -26,31 +26,31 @@ export const FREELANCER_CONTENT = {
         id: 'bridal',
         title: 'BRIDAL',
         description: 'Bridal makeup for your most beautiful day.',
-        image: 'assets/img/services/bridal.webp'
+        image: 'assets/img/bridal.webp'
       },
       {
         id: 'beauty',
         title: 'BEAUTY',
         description: 'Daytime and evening makeup for every occasion.',
-        image: 'assets/img/services/beauty.webp'
+        image: 'assets/img/beauty.webp'
       },
       {
         id: 'editorial',
         title: 'EDITORIAL',
         description: 'Creative looks for photoshoots and campaigns.',
-        image: 'assets/img/services/editorial.webp'
+        image: 'assets/img/editorial.webp'
       },
       {
         id: 'sfx',
         title: 'SFX & CREATIVE',
         description: 'Special effects and creative transformations.',
-        image: 'assets/img/services/sfx.webp'
+        image: 'assets/img/sfx.webp'
       },
       {
         id: 'eyes',
         title: 'EYES',
         description: 'Expressive eye makeup that makes every glance unforgettable.',
-        image: 'assets/img/services/eyes.webp'
+        image: 'assets/img/eyes.webp'
       }
     ]
   }
