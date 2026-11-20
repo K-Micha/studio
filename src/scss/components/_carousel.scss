@@ -1,0 +1,67 @@
+.sf-carousel {
+    &__track {
+        position: relative;
+        width: 100%;
+        isolation: isolate;
+    }
+
+    &__slide {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform-origin: center var(--sf-carousel-focus-y, 50%);
+        transform: translateX(-50%) scale(0.85);
+
+        transition:
+            left 400ms ease,
+            transform 400ms ease,
+            opacity 400ms ease,
+            filter 400ms ease;
+    }
+
+    &__slide.is-active {
+        z-index: 3;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) scale(1);
+        filter: none;
+    }
+
+    &__slide.is-prev,
+    &__slide.is-next {
+        z-index: 2;
+        opacity: var(--sf-carousel-inner-opacity, 0.45);
+        visibility: visible;
+        transform: translateX(-50%) scale(0.85);
+        filter: blur(1px);
+    }
+
+    &__slide.is-prev {
+        left: calc(50% - var(--sf-carousel-inner-offset, 240px));
+    }
+
+    &__slide.is-next {
+        left: calc(50% + var(--sf-carousel-inner-offset, 240px));
+    }
+
+    &__slide.is-prev-outer,
+    &__slide.is-next-outer {
+        z-index: 1;
+        opacity: var(--sf-carousel-outer-opacity, 0.2);
+        visibility: visible;
+        transform: translateX(-50%) scale(0.7);
+        filter: blur(2px);
+    }
+
+    &__slide.is-prev-outer {
+        left: calc(50% - var(--sf-carousel-outer-offset, 390px));
+    }
+
+    &__slide.is-next-outer {
+        left: calc(50% + var(--sf-carousel-outer-offset, 390px));
+    }
+}

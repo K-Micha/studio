@@ -1,0 +1,100 @@
+@use '../../../../scss/components/carousel';
+
+.carousel {
+    --sf-carousel-focus-y: calc(min(250px, 75vw) * 0.56);
+    --sf-carousel-inner-offset: 195px;
+    --sf-carousel-outer-offset: 340px;
+    --sf-carousel-inner-opacity: 0.45;
+    --sf-carousel-outer-opacity: 0.2;
+
+    width: 100%;
+
+    &__heading {
+        margin-bottom: 48px;
+    }
+
+    &__list {
+        min-height: 650px;
+    }
+
+    &__wrapper {
+        width: 250px;
+        max-width: 75vw;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    &__card {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    &__preview {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    &__details {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+
+        h3,
+        p {
+            max-width: 100%;
+            white-space: pre-line;
+            overflow-wrap: break-word;
+        }
+
+        h3 {
+            width: 100%;
+            transition: transform 400ms ease;
+        }
+
+        p {
+            transition:
+                opacity 300ms ease,
+                visibility 300ms ease;
+        }
+    }
+
+    &__action {
+        margin-left: -24px;
+
+        transition:
+            opacity 300ms ease,
+            visibility 300ms ease;
+    }
+
+    &__wrapper:not(.is-active) {
+        .carousel__details {
+            align-items: center;
+
+            h3 {
+                text-align: center;
+            }
+
+            p,
+            .carousel__action {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        &__list {
+            min-height: 560px;
+        }
+
+        &__wrapper {
+            width: 250px;
+            max-width: 75vw;
+        }
+    }
+}
