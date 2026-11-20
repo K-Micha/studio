@@ -40,6 +40,7 @@
 
         } @else if (visibleItems().length >= 2 && visibleItems().length <= 4) { <div class="grid"
             [class.grid--two]="visibleItems().length === 2">
+
             <div class="grid__heading">
                 <h2>{{ content().title }}</h2>
                 <p>{{ content().description }}</p>
@@ -56,7 +57,11 @@
                         <div class="grid__details">
                             <h3>{{ item.title }}</h3>
                             <p>{{ item.description }}</p>
-                            <a href="#">LEARN MORE</a>
+
+                            <a class="grid__action" href="#">
+                                <span>LEARN MORE</span>
+                                <app-animated-arrow />
+                            </a>
                         </div>
 
                         <button class="grid__overlay-trigger" type="button"
