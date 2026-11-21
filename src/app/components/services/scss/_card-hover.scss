@@ -1,3 +1,4 @@
+
 :is(
     .single__card,
     .grid__card,
@@ -63,6 +64,93 @@
     }
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .carousel {
+        --sf-carousel-hover-pull: 16px;
+
+        .sf-carousel__slide.is-prev,
+        .sf-carousel__slide.is-next {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .sf-carousel__slide:not(.is-active) {
+            .carousel__card {
+                &:hover,
+                &:focus-within {
+                    transform: scale(1);
+                }
+
+                &::before,
+                &::after {
+                    opacity: 0;
+                }
+            }
+
+            .carousel__overlay-trigger {
+                pointer-events: none;
+            }
+        }
+
+        .sf-carousel__track:has(
+            .sf-carousel__slide.is-prev:hover,
+            .sf-carousel__slide.is-next:hover
+        ) {
+            .sf-carousel__slide.is-active {
+                z-index: 3;
+                opacity: 0.65;
+                transform: translateX(-50%) scale(0.85);
+                filter: blur(0.5px);
+            }
+        }
+
+        .sf-carousel__track:has(
+            .sf-carousel__slide.is-prev:hover
+        ) {
+            .sf-carousel__slide.is-prev {
+                z-index: 4;
+                left: calc(
+                    50% - var(--sf-carousel-inner-offset)
+                    - var(--sf-carousel-hover-pull)
+                );
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+                filter: none;
+            }
+
+            .sf-carousel__slide.is-prev-outer {
+                transform: translateX(-50%) scale(0.64);
+            }
+        }
+
+        .sf-carousel__track:has(
+            .sf-carousel__slide.is-next:hover
+        ) {
+            .sf-carousel__slide.is-next {
+                z-index: 4;
+                left: calc(
+                    50% + var(--sf-carousel-inner-offset)
+                    + var(--sf-carousel-hover-pull)
+                );
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+                filter: none;
+            }
+
+            .sf-carousel__slide.is-next-outer {
+                transform: translateX(-50%) scale(0.64);
+            }
+        }
+    }
+}
+
+@media (hover: hover) and (pointer: fine)
+    and (max-width: 1199px) {
+    .carousel {
+        --sf-carousel-hover-pull: 6px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     :is(
         .single__card,
@@ -75,5 +163,9 @@
         &::after {
             transition: none;
         }
+    }
+
+    .carousel .sf-carousel__slide {
+        transition: none;
     }
 }

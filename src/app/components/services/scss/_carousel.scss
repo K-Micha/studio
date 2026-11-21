@@ -2,8 +2,8 @@
 
 .carousel {
     --sf-carousel-focus-y: calc(min(250px, 75vw) * 0.56);
-    --sf-carousel-inner-offset: 195px;
-    --sf-carousel-outer-offset: 340px;
+    --sf-carousel-inner-offset: clamp(195px, 23%, 320px);
+    --sf-carousel-outer-offset: max(0px, calc(50% - 24px - 87.5px));
     --sf-carousel-inner-opacity: 0.45;
     --sf-carousel-outer-opacity: 0.2;
 
@@ -15,6 +15,8 @@
 
     &__list {
         min-height: 650px;
+        user-select: none;
+        -webkit-user-select: none;
     }
 
     &__wrapper {
@@ -36,6 +38,10 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+
+        img {
+            -webkit-user-drag: none;
+        }
     }
 
     &__details {
