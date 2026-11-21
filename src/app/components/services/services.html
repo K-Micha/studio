@@ -1,4 +1,9 @@
-<section class="services">
+<section class="services" #servicesSection [attr.tabindex]="visibleItems().length >= 5 ? 0 : null"
+    [attr.aria-label]="visibleItems().length >= 5 ? 'Services carousel. Use left and right arrow keys to navigate.' : null"
+    (pointerenter)="onPointerEnter($event)" (pointerleave)="onPointerLeave()"
+    (pointermove)="onCarouselPointerMove($event)" (pointerup)="onCarouselPointerUp($event)"
+    (pointercancel)="onCarouselPointerCancel()">
+
     <div class="services__container">
         <span class="services__eyebrow">
             {{ content().eyebrow }}
@@ -16,7 +21,7 @@
                 <div class="single__wrapper">
                     <article class="single__card">
                         <div class="single__preview">
-                            <img [src]="item.image" [alt]="item.title" draggable="false">
+                            <img [src]="item.image" [alt]="item.title">
                         </div>
 
                         <div class="single__details">
@@ -38,8 +43,8 @@
             </div>
         </div>
 
-        } @else if (visibleItems().length >= 2 && visibleItems().length <= 4) {
-        <div class="grid" [class.grid--two]="visibleItems().length === 2">
+        } @else if (visibleItems().length >= 2 && visibleItems().length <= 4) { <div class="grid"
+            [class.grid--two]="visibleItems().length === 2">
             <div class="grid__heading">
                 <h2>{{ content().title }}</h2>
                 <p>{{ content().description }}</p>
@@ -50,7 +55,7 @@
                 <div class="grid__wrapper">
                     <article class="grid__card">
                         <div class="grid__preview">
-                            <img [src]="item.image" [alt]="item.title" draggable="false">
+                            <img [src]="item.image" [alt]="item.title">
                         </div>
 
                         <div class="grid__details">
@@ -70,48 +75,47 @@
                 </div>
                 }
             </div>
+    </div>
+
+    } @else if (visibleItems().length >= 5) {
+    <div class="carousel sf-carousel">
+        <div class="carousel__heading">
+            <h2>{{ content().title }}</h2>
+            <p>{{ content().description }}</p>
         </div>
 
-        } @else if (visibleItems().length >= 5) {
-        <div class="carousel sf-carousel">
-            <div class="carousel__heading">
-                <h2>{{ content().title }}</h2>
-                <p>{{ content().description }}</p>
+        <div class="carousel__list sf-carousel__track" (pointerdown)="onCarouselPointerDown($event)">
+
+            @for (item of visibleItems(); track item.id; let i = $index) {
+            <div class="carousel__wrapper sf-carousel__slide" [class.is-prev-outer]="carouselPosition(i) === -2"
+                [class.is-prev]="carouselPosition(i) === -1" [class.is-active]="carouselPosition(i) === 0"
+                [class.is-next]="carouselPosition(i) === 1" [class.is-next-outer]="carouselPosition(i) === 2"
+                (click)="onCarouselClick($event, i)">
+
+                <article class="carousel__card"
+                    [class.is-scroll-highlight]="scrollHighlight() && carouselPosition(i) === 0">
+                    <div class="carousel__preview">
+                        <img [src]="item.image" [alt]="item.title" draggable="false">
+                    </div>
+
+                    <div class="carousel__details">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+
+                        <a class="carousel__action" href="#">
+                            <span>LEARN MORE</span>
+                            <app-animated-arrow />
+                        </a>
+                    </div>
+
+                    <button class="carousel__overlay-trigger" type="button"
+                        [attr.aria-label]="'View ' + item.title + ' gallery'">
+                    </button>
+                </article>
             </div>
-
-            <div class="carousel__list sf-carousel__track">
-                @for (item of visibleItems(); track item.id; let i = $index) {
-                <div class="carousel__wrapper sf-carousel__slide"
-                    [class.is-prev-outer]="carouselPosition(i) === -2"
-                    [class.is-prev]="carouselPosition(i) === -1"
-                    [class.is-active]="carouselPosition(i) === 0"
-                    [class.is-next]="carouselPosition(i) === 1"
-                    [class.is-next-outer]="carouselPosition(i) === 2"
-                    (click)="selectCarouselItem(i)">
-
-                    <article class="carousel__card">
-                        <div class="carousel__preview">
-                            <img [src]="item.image" [alt]="item.title" draggable="false">
-                        </div>
-
-                        <div class="carousel__details">
-                            <h3>{{ item.title }}</h3>
-                            <p>{{ item.description }}</p>
-
-                            <a class="carousel__action" href="#">
-                                <span>LEARN MORE</span>
-                                <app-animated-arrow />
-                            </a>
-                        </div>
-
-                        <button class="carousel__overlay-trigger" type="button"
-                            [attr.aria-label]="'View ' + item.title + ' gallery'">
-                        </button>
-                    </article>
-                </div>
-                }
-            </div>
+            }
         </div>
-        }
+    </div>
+    }
     </div>
 </section>

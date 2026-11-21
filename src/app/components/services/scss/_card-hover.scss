@@ -1,4 +1,3 @@
-
 :is(
     .single__card,
     .grid__card,
@@ -148,6 +147,32 @@
     and (max-width: 1199px) {
     .carousel {
         --sf-carousel-hover-pull: 6px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .carousel__wrapper.is-active {
+        .carousel__card {
+            &::before,
+            &::after {
+                inset: -12px;
+                opacity: 0.75;
+                filter: drop-shadow(
+                    0 0 3px rgba(168, 168, 168, 0.4)
+                );
+            }
+        }
+    }
+
+    .carousel__wrapper.is-active {
+        .carousel__card.is-scroll-highlight {
+            .carousel__action {
+                color: #C4AA7F;
+                text-shadow:
+                    0 1px 1px rgba(0, 0, 0, 0.6),
+                    0 0 1px rgba(0, 0, 0, 0.3);
+            }
+        }
     }
 }
 
