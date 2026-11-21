@@ -7,7 +7,9 @@ StudioFlow is an independently developed software project designed to simplify t
 
 The platform targets freelancers and studios in industries such as hairdressing, beauty, makeup artistry, tattooing, and photography.
 
-The long-term goal is to provide a multi-tenant SaaS solution that combines customizable public websites with a centralized administration system.
+The goal is to provide a multi-tenant SaaS solution that combines individually configurable public websites with a separate Angular-based administration application.
+
+StudioFlow is designed to allow customers to manage their website content, services, media, and business settings through a centralized administration interface, without requiring direct access to the website's source code.
 
 > **Project Status:** Active development.
 >
@@ -19,9 +21,10 @@ The long-term goal is to provide a multi-tenant SaaS solution that combines cust
 
 | Category | Technologies |
 |---|---|
-| Frontend | Angular 21, TypeScript |
+| Public Website | Angular 21, TypeScript |
+| Administration | Angular 21, Angular Material, TypeScript |
 | Styling | SCSS, BEM methodology |
-| UI Components | Angular Material |
+| UI Components | Angular Material, custom components |
 | Database | PostgreSQL, Supabase |
 | Authentication | Supabase Auth |
 | File Storage | Supabase Storage |
@@ -33,11 +36,21 @@ The long-term goal is to provide a multi-tenant SaaS solution that combines cust
 
 ## Project Architecture
 
-StudioFlow is designed around three interconnected application areas.
+StudioFlow is structured around three interconnected application areas:
+
+1. Public Website
+2. Studio Administration
+3. Backend and Data Management
+
+The public website and administration panel are developed as separate Angular applications.
+
+They are designed to communicate through a shared backend and data infrastructure, allowing each customer's website configuration to be managed centrally.
 
 ### 1. Public Website
 
-Customizable websites for individual freelancers and businesses.
+The public-facing application provides customizable websites for individual freelancers, studios, and businesses.
+
+Each website is designed to reflect the customer's individual business profile, services, visual presentation, and content preferences.
 
 Features planned or currently under development include:
 
@@ -47,17 +60,26 @@ Features planned or currently under development include:
 - Multilingual content management
 - Responsive layouts and interfaces
 - Customizable presentation for different business models
+- Customer-specific website configurations
 - Integration with the StudioFlow administration system
 
-The public website is designed to provide a professional online presence while allowing content to be managed independently through the administration interface.
+Rather than requiring manual changes to the website's source code, StudioFlow is designed to retrieve customer-specific configurations from the backend.
+
+This allows website content and settings to be managed through the administration application.
+
+The public website and its internal management system remain technically separated while forming part of the same platform.
 
 ### 2. Studio Administration
 
-A centralized dashboard for managing website content and business operations.
+Behind the public-facing website, StudioFlow includes a separate Angular application built with Angular Material.
+
+This administration application provides the central management interface for customer-specific website configurations and business operations.
+
+The objective is to allow freelancers and studio owners to maintain their websites independently through an intuitive dashboard.
 
 Key modules include:
 
-- **Page Content:** Management of website texts and page sections
+- **Page Content:** Management of website texts and individual page sections
 - **Gallery:** Organization of images, videos, and showcases
 - **Appointments:** Calendar views and appointment management
 - **Questions:** Customer inquiries and message management
@@ -66,7 +88,39 @@ Key modules include:
 - **Locations:** Management of business locations
 - **Languages:** Multilingual content administration
 
-The administration interface follows a modular component architecture and uses Angular Material alongside custom UI components.
+#### Customer-Specific Configuration
+
+The administration system is designed to manage settings and content individually for each customer.
+
+Depending on the customer's business model, these configurations may include:
+
+- Freelancer or studio website configuration
+- Available services and service descriptions
+- Website content and media
+- Language preferences
+- Business locations
+- Employees and team structures
+- Appointment-related settings
+- Visibility of individual website sections
+
+The public website is designed to synchronize with these configurations through the backend.
+
+This architecture allows the same underlying website system to support different customers without requiring a separate implementation for every business.
+
+#### Separation of Applications
+
+The public website and administration panel are intentionally maintained as separate Angular applications.
+
+This separation provides a clearer distinction between:
+
+- Publicly accessible website functionality
+- Authenticated administration functionality
+- Customer-specific configuration management
+- Shared backend services and data access
+
+The administration application uses Angular Material alongside individually developed UI components.
+
+Its internal architecture, implementation details, and proprietary components are not included in this public repository.
 
 ### 3. Backend and Data Management
 
@@ -74,18 +128,29 @@ The backend and data architecture is designed to support multiple independent te
 
 Core technologies include PostgreSQL and Supabase.
 
-Key architectural considerations:
+The backend provides the foundation for communication between the public websites and the administration application.
+
+Key architectural considerations include:
 
 - Tenant-specific data isolation
+- Customer-specific configuration management
 - Authentication and authorization
 - Role-based access management
 - PostgreSQL Row Level Security
-- Structured data access
+- Structured and controlled data access
 - Separation of routes, controllers, services, and repositories
 - Secure media storage
 - Integration with automation workflows
 
-The architecture is being developed with long-term maintainability and scalability in mind.
+#### Multi-Tenant Architecture
+
+StudioFlow is designed as a multi-tenant platform.
+
+Each customer should be able to manage an individual website configuration while using the shared application infrastructure.
+
+Tenant-specific data access and configuration management are designed to prevent unrelated customer data from being exposed across accounts.
+
+The architecture is being developed with long-term maintainability, security, and scalability in mind.
 
 ---
 
@@ -93,15 +158,35 @@ The architecture is being developed with long-term maintainability and scalabili
 
 StudioFlow combines Angular Material with individually developed interface components.
 
-The design approach focuses on:
+The public website and administration application follow different visual requirements while sharing consistent development principles.
 
-- Consistent visual language
-- Reusable components
-- Clear information hierarchy
+### Public Website
+
+The public website focuses on individual branding, visual presentation, and user experience.
+
+Design priorities include:
+
+- Custom visual identity
 - Responsive layouts
+- Clear content presentation
+- Reusable website sections
+- Individually developed UI elements
+- Custom icons and visual effects
+- Consistent interaction patterns
+
+### Administration Interface
+
+The administration application focuses on efficient workflows and practical business management.
+
+Design priorities include:
+
+- Clear information hierarchy
 - Structured navigation
+- Consistent Angular Material components
+- Reusable administration interfaces
 - Accessible interaction patterns
-- Custom styling and visual effects
+- Responsive application layouts
+- Efficient content editing
 - Practical workflows for everyday business operations
 
 Custom UI elements and visual assets are developed specifically for StudioFlow.
@@ -112,7 +197,7 @@ Not all design components or implementations are included in this public reposit
 
 ## Development Principles
 
-The development process emphasizes clean architecture, readability, and maintainability.
+The development process emphasizes clean architecture, readability, maintainability, and separation of responsibilities.
 
 ### Frontend
 
@@ -123,6 +208,8 @@ The development process emphasizes clean architecture, readability, and maintain
 - Reusable styles and shared design elements
 - Separation of templates, styles, and component logic
 - Modular application structure
+- Separation of public and administrative applications
+- Customer-specific configuration handling
 
 ### Backend
 
@@ -132,6 +219,7 @@ The development process emphasizes clean architecture, readability, and maintain
 - Typed interfaces and data structures
 - Maintainable and focused functions
 - Authentication and access control
+- Tenant-specific data handling
 - Security-conscious development practices
 
 ### General Approach
@@ -142,6 +230,7 @@ The development process emphasizes clean architecture, readability, and maintain
 - Continuous testing and refinement
 - Version control with Git
 - Focus on real business requirements
+- Long-term maintainability and extensibility
 
 ---
 
@@ -154,9 +243,12 @@ The planned development sequence includes:
 1. Complete the public website for individual freelancers.
 2. Develop the public website variant for studios and businesses.
 3. Connect both website models to StudioFlow Administration.
-4. Complete responsive optimization and mobile layouts.
-5. Expand backend integrations and tenant management.
-6. Prepare the platform for production deployment.
+4. Implement customer-specific configuration synchronization.
+5. Complete responsive optimization and mobile layouts.
+6. Expand backend integrations and tenant management.
+7. Prepare the platform for production deployment.
+
+The administration application and selected backend modules are being developed alongside the public website.
 
 Features, architecture, and development priorities may change as the project evolves.
 
@@ -174,12 +266,26 @@ Its primary purpose is to demonstrate:
 - SCSS organization and UI implementation
 - Application structure and maintainability
 - My ongoing development progress
+- The technical development of a modular SaaS platform
 
 ### Important Notice
 
 This repository does **not** contain the complete StudioFlow source code.
 
-Certain components, proprietary design systems, internal business logic, configuration files, and other project resources are intentionally excluded.
+StudioFlow consists of multiple interconnected applications and backend services.
+
+The public website is only one part of the overall platform.
+
+The separate Angular Material administration application, internal backend implementations, and selected proprietary components are intentionally not published in this repository.
+
+Additional excluded resources may include:
+
+- Proprietary UI components and design systems
+- Custom visual assets and icon implementations
+- Internal business logic
+- Customer-specific configuration mechanisms
+- Security-related configuration
+- Private application infrastructure
 
 The repository is therefore not intended to function as a complete application after cloning.
 
