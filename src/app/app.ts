@@ -8,13 +8,14 @@ import { WebsiteContentService } from './core/website-content.service';
 import { Touch } from './animations/touch/touch';
 import { Services } from './components/services/services';
 import { DemoAside } from './demo/demo-aside/demo-aside';
+import { Icons } from './shared/icons/icons';
 
 /**
 *Root component of the StudioFlow website.
 */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Hero, Footer, Touch, Services, DemoAside],
+  imports: [RouterOutlet, Header, Hero, Footer, Touch, Services, DemoAside, Icons],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

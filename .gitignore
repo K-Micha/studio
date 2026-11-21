@@ -42,3 +42,10 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+
+# Proprietary StudioFlow components and custom 2.5D icons
+/src/app/shared/icons/
+
+# Proprietary StudioFlow license and AI usage restrictions
+/src/app/license.ts
