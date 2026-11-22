@@ -20,23 +20,21 @@
                 @for (item of visibleItems(); track item.id) {
                 <div class="single__wrapper">
                     <article class="single__card">
-                        <div class="single__preview">
-                            <img [src]="item.image" [alt]="item.title">
+                        <div class="single__preview-frame">
+                            <div class="single__preview">
+                                <img [src]="item.image" [alt]="item.title">
+                            </div>
                         </div>
 
                         <div class="single__details">
                             <h3>{{ item.title }}</h3>
                             <p>{{ item.description }}</p>
-
-                            <a class="single__action" href="#">
-                                <span>LEARN MORE</span>
-                                <app-animated-arrow />
-                            </a>
+                            <app-circle-arrow class="single__arrow" aria-hidden="true" />
                         </div>
 
-                        <button class="single__overlay-trigger" type="button"
-                            [attr.aria-label]="'View ' + item.title + ' gallery'">
-                        </button>
+                        <a class="single__overlay-trigger" [attr.href]="'/' + item.id"
+                            [attr.aria-label]="'Explore ' + item.title">
+                        </a>
                     </article>
                 </div>
                 }
@@ -54,23 +52,21 @@
                 @for (item of visibleItems(); track item.id) {
                 <div class="grid__wrapper">
                     <article class="grid__card">
-                        <div class="grid__preview">
-                            <img [src]="item.image" [alt]="item.title">
+                        <div class="grid__preview-frame">
+                            <div class="grid__preview">
+                                <img [src]="item.image" [alt]="item.title">
+                            </div>
                         </div>
 
                         <div class="grid__details">
                             <h3>{{ item.title }}</h3>
                             <p>{{ item.description }}</p>
-
-                            <a class="grid__action" href="#">
-                                <span>LEARN MORE</span>
-                                <app-animated-arrow />
-                            </a>
+                            <app-circle-arrow class="grid__arrow" aria-hidden="true" />
                         </div>
 
-                        <button class="grid__overlay-trigger" type="button"
-                            [attr.aria-label]="'View ' + item.title + ' gallery'">
-                        </button>
+                        <a class="grid__overlay-trigger" [attr.href]="'/' + item.id"
+                            [attr.aria-label]="'Explore ' + item.title">
+                        </a>
                     </article>
                 </div>
                 }
@@ -94,23 +90,22 @@
 
                 <article class="carousel__card"
                     [class.is-scroll-highlight]="scrollHighlight() && carouselPosition(i) === 0">
-                    <div class="carousel__preview">
-                        <img [src]="item.image" [alt]="item.title" draggable="false">
+
+                    <div class="carousel__preview-frame">
+                        <div class="carousel__preview">
+                            <img [src]="item.image" [alt]="item.title" draggable="false">
+                        </div>
                     </div>
 
                     <div class="carousel__details">
                         <h3>{{ item.title }}</h3>
                         <p>{{ item.description }}</p>
-
-                        <a class="carousel__action" href="#">
-                            <span>LEARN MORE</span>
-                            <app-animated-arrow />
-                        </a>
+                        <app-circle-arrow class="carousel__arrow" aria-hidden="true" />
                     </div>
 
-                    <button class="carousel__overlay-trigger" type="button"
-                        [attr.aria-label]="'View ' + item.title + ' gallery'">
-                    </button>
+                    <a class="carousel__overlay-trigger" [attr.href]="'/' + item.id"
+                        [attr.aria-label]="'Explore ' + item.title">
+                    </a>
                 </article>
             </div>
             }

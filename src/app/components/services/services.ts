@@ -1,15 +1,16 @@
 import { afterRenderEffect, Component, computed, DestroyRef, ElementRef, HostListener, inject, signal, viewChild } from '@angular/core';
 import { WebsiteContentService } from '../../core/website-content.service';
 import { WebsiteModeService } from '../../core/website-mode.service';
-import { AnimatedArrow } from '../../animations/animated-arrow/animated-arrow';
 import { PointerGesture } from '../../shared/pointer/pointer';
+import { CircleArrow } from '../../shared/icons/circle-arrow/circle-arrow';
+
 
 /**
 *Displays the configured services for the current website.
 */
 @Component({
   selector: 'app-services',
-  imports: [AnimatedArrow],
+  imports: [CircleArrow],
   templateUrl: './services.html',
   styleUrl: './services.scss',
 })

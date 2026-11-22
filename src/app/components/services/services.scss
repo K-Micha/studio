@@ -6,13 +6,13 @@
 
 .services {
     padding-block: 24px;
-    background-color: #fff;
+    background: #fff;
     color: #29231f;
 
     &__container {
         width: 100%;
         max-width: 1440px;
-        margin-inline: auto;
+        margin: 0 auto;
         padding-inline: 40px;
         box-sizing: border-box;
     }
@@ -20,25 +20,17 @@
     &__eyebrow {
         display: block;
         margin-bottom: 24px;
+        color: #ad876c;
         font-size: 16px;
         font-weight: 600;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        color: #ad876c;
-    }
-
-    @media (max-width: 767px) {
-        &__container {
-            padding-inline: 20px;
-        }
     }
 }
 
-// Shared headings
-:is(.single__heading,
-    .grid__heading,
-    .carousel__heading) {
+:is(.single__heading, .grid__heading, .carousel__heading) {
     display: flex;
+    justify-content: space-between;
     gap: 32px;
 
     h2 {
@@ -53,60 +45,34 @@
         max-width: 420px;
         margin: 0;
         font-size: 24px;
-        font-weight: 400;
         line-height: 1.4;
     }
 }
 
-// Shared wrappers
-:is(.single__wrapper,
-    .grid__wrapper,
-    .carousel__wrapper) {
+:is(.single__wrapper, .grid__wrapper, .carousel__wrapper) {
     min-width: 0;
     box-sizing: border-box;
 }
 
-// Shared cards
-:is(.single__card,
-    .grid__card,
-    .carousel__card) {
+:is(.single__card, .grid__card, .carousel__card) {
     position: relative;
     min-width: 0;
     max-width: 100%;
 }
 
-// Full-card overlay triggers
-:is(.single__overlay-trigger,
-    .grid__overlay-trigger,
-    .carousel__overlay-trigger) {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-
-    &:focus-visible {
-        outline: 2px solid #C4AA7F;
-        outline-offset: 4px;
-    }
-}
-
-// Shared card information
-:is(.single__details,
-    .grid__details,
-    .carousel__details) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+:is(.single__details, .grid__details, .carousel__details) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 38px;
+    grid-template-rows: auto auto;
+    align-content: start;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 12px;
+    min-width: 0;
     padding-top: 16px;
 
     h3 {
+        grid-column: 1 / -1;
         margin: 0;
         font-size: 24px;
         font-weight: 500;
@@ -114,66 +80,54 @@
     }
 
     p {
+        grid-column: 1;
         margin: 0;
         font-size: 16px;
         line-height: 1.5;
-    }
-
-    a {
-        position: relative;
-        z-index: 2;
-        color: inherit;
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        text-transform: uppercase;
-
-        transition:
-            color 300ms ease,
-            text-shadow 300ms ease;
-
-        &:hover,
-        &:focus-visible {
-            color: #C4AA7F;
-            text-shadow:
-                0 1px 1px rgba(0, 0, 0, 0.6),
-                0 0 1px rgba(0, 0, 0, 0.3);
-        }
+        overflow-wrap: break-word;
     }
 }
 
-// Shared action containers
-:is(.single__details,
-    .grid__details,
-    .carousel__details)> :is(.single__action,
-    .grid__action,
-    .carousel__action) {
-    position: relative;
-    z-index: 2;
-
+// One shared decorative arrow
+:is(.single__arrow, .grid__arrow, .carousel__arrow) {
+    grid-column: 2;
+    grid-row: 2;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-
-    width: max-content;
-    max-width: 100%;
-    min-height: 72px;
-    padding: 16px 24px;
+    justify-content: center;
+    justify-self: end;
+    width: 38px;
+    height: 38px;
     box-sizing: border-box;
+    border: 1.5px solid #b58b37;
+    border-radius: 50%;
+    color: #29231f;
+    font-size: 23px;
+    line-height: 1;
+    pointer-events: none;
+}
 
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.3;
-    text-decoration: none;
-    white-space: nowrap;
+// Entire article is the click target
+:is(.single__overlay-trigger, .grid__overlay-trigger, .carousel__overlay-trigger) {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: block;
     cursor: pointer;
+
+    &:focus-visible {
+        outline: 2px solid #c4aa7f;
+        outline-offset: 5px;
+        border-radius: 8px;
+    }
 }
 
 @media (max-width: 767px) {
+    .services__container {
+        padding-inline: 20px;
+    }
 
-    :is(.single__heading,
-        .grid__heading,
-        .carousel__heading) {
+    :is(.single__heading, .grid__heading, .carousel__heading) {
         h2 {
             font-size: 36px;
         }
