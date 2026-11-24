@@ -1,10 +1,20 @@
-<section class="hero" [class.hero--studio]="mode.studio()">
+@let data = hero();
+
+<section class="hero" [class.hero--studio]="mode.studio()" [class.hero--portrait]="data.layout === 'portrait'">
+    @if (data.layout === 'video') {
+        <video class="hero__media" [src]="data.video" [attr.poster]="data.image ?? null"
+            [muted]="true" autoplay loop playsinline preload="metadata" aria-hidden="true"></video>
+    } @else {
+        <img class="hero__media" [class.hero__portrait]="data.layout === 'portrait'"
+            [src]="data.image" alt="" fetchpriority="high">
+    }
+
     <div class="hero__content">
-        <span class="hero__label">{{ hero().label }}</span>
+        <span class="hero__label">{{ data.label }}</span>
 
-        <h1 class="hero__title">{{ hero().title }}</h1>
+        <h1 class="hero__title">{{ data.title }}</h1>
 
-        <p class="hero__desc">{{ hero().description }}</p>
+        <p class="hero__desc">{{ data.description }}</p>
 
         <div class="hero__socials">
             <!-- Später dynamisch aus den Kundeneinstellungen -->

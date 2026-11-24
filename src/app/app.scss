@@ -1,25 +1,4 @@
 .website-background {
     position: relative;
     background-color: #1c1714;
-
-    &__image {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        background-repeat: no-repeat;
-        pointer-events: none;
-    }
-
-    &--portrait &__image {
-        width: 50%;
-        background-size: 200% auto;
-        background-position: center top;
-    }
-
-    &--layer &__image {
-        width: 100%;
-        background-size: cover;
-        background-position: center;
-    }
 }

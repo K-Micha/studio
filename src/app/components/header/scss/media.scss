@@ -1,13 +1,42 @@
 @use '../../../../scss/abstract/mixins' as mx;
 
-@media (max-width: 990px) {
-    .header .header__normal {
-        display: none;
+.header {
+    @media (max-width: 990px) {
+        & &__normal {
+            display: none;
+        }
     }
-}
 
-@media (min-width: 991px) {
-    .header .header__burger {
-        display: none;
+    @media (min-width: 991px) {
+        & &__burger {
+            display: none;
+        }
+    }
+
+    @media (max-width: 950px) {
+        &.header--portrait {
+            padding: clamp(0.875rem, 3vw, 1.75rem) clamp(1.25rem, 6vw, 3rem) 0;
+
+            .brand {
+                padding: 0;
+
+                &__side {
+                    display: none;
+                }
+
+                &__img {
+                    position: static;
+                    display: block;
+                    width: clamp(3.25rem, 14vw, 4.5rem);
+                    transform: none;
+                }
+            }
+
+            .burger {
+                right: 0;
+                width: 44px;
+                height: 44px;
+            }
+        }
     }
 }

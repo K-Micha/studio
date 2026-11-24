@@ -1,21 +1,11 @@
-<div class="website-background" [class.website-background--portrait]="content.hero().layout === 'portrait'"
-  [class.website-background--layer]="content.hero().layout === 'layer'"
+<div class="website-background"
   [style.background-color]="content.hero().backgroundColor" [style.color]="content.hero().textColor">
-
-  <div class="website-background__image" [style.background-image]="'url(' + content.hero().image + ')'">
-  </div>
 
   <app-header />
   <app-demo-aside />
 
   <main>
-    @if (mode.freelancer()) {
     <app-hero />
-    <!-- Freelancer: dynamische Seiten -->
-    } @else if (mode.studio()) {
-    <app-hero />
-    <!-- Studio: One-Page -->
-    }
   </main>
 
 </div>

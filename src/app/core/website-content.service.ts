@@ -2,6 +2,7 @@ import { computed, inject, Injectable } from '@angular/core';
 import { WebsiteModeService } from './website-mode.service';
 import { FREELANCER_CONTENT } from './content/freelancer.content';
 import { STUDIO_CONTENT } from './content/studio.content';
+import type { HeroConfig } from './types/hero.types';
 
 /**
 *Provides the active website content based on business type.
@@ -18,6 +19,6 @@ export class WebsiteContentService {
   readonly name = computed(() => this.content().name);
   readonly subtitle = computed(() => this.content().subtitle);
 
-  readonly hero = computed(() => this.content().hero);
+  readonly hero = computed<HeroConfig>(() => this.content().hero);
   readonly services = computed(() => this.content().services);
 }
