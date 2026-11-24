@@ -1,8 +1,17 @@
+@use 'sass:map';
+@use '../../../scss/abstract/variables' as *;
+
 @use './scss/horizontal';
 @use './scss/grid';
 @use './scss/carousel';
 @use './scss/image-frame';
 @use './scss/card-hover';
+
+@property --ring-darkness {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+}
 
 .services {
     padding-block: 24px;
@@ -99,12 +108,59 @@
     width: 38px;
     height: 38px;
     box-sizing: border-box;
-    border: 1.5px solid #b58b37;
+    border: 2px solid transparent;
     border-radius: 50%;
-    color: #29231f;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(135deg,
+            map.get($hover-line, gold-dark) 0%,
+            map.get($hover-line, gold-deep) 12%,
+            map.get($hover-line, gold) 25%,
+            color-mix(in srgb,
+                map.get($hover-line, champagne),
+                map.get($hover-line, gold) var(--ring-darkness)) 37%,
+            color-mix(in srgb,
+                map.get($hover-line, ivory),
+                map.get($hover-line, champagne) var(--ring-darkness)) 45%,
+            color-mix(in srgb,
+                map.get($hover-line, white),
+                map.get($hover-line, champagne) var(--ring-darkness)) 50%,
+            color-mix(in srgb,
+                map.get($hover-line, ivory),
+                map.get($hover-line, champagne) var(--ring-darkness)) 55%,
+            color-mix(in srgb,
+                map.get($hover-line, champagne),
+                map.get($hover-line, gold) var(--ring-darkness)) 63%,
+            map.get($hover-line, gold) 75%,
+            map.get($hover-line, gold-deep) 88%,
+            map.get($hover-line, gold-dark) 100%) border-box;
+    background-repeat: no-repeat;
+    animation: arrow-ring-glint 6s ease-in-out infinite;
+    box-shadow:
+        0 0 0 0.5px rgba(196, 170, 127, 0.18),
+        0 0 8px rgba(196, 170, 127, 0.12);
+    color: #47382d;
     font-size: 23px;
     line-height: 1;
     pointer-events: none;
+}
+
+@keyframes arrow-ring-glint {
+
+    0%,
+    15% {
+        --ring-darkness: 0%;
+    }
+
+    45%,
+    55% {
+        --ring-darkness: 100%;
+    }
+
+    85%,
+    100% {
+        --ring-darkness: 0%;
+    }
 }
 
 // Entire article is the click target
@@ -135,5 +191,11 @@
         p {
             font-size: 18px;
         }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :is(.single__arrow, .grid__arrow, .carousel__arrow) {
+        animation: none;
     }
 }

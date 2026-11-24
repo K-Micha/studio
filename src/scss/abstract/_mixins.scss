@@ -1,13 +1,13 @@
+@use 'sass:map';
 @use 'functions' as fct;
+@use 'variables' as *;
 
 /**
 *Applies a flex layout.
 */
-@mixin flex(
-  $direction: row,
+@mixin flex($direction: row,
   $justify: center,
-  $align: center
-) {
+  $align: center) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
@@ -25,12 +25,31 @@
 /**
 *Applies transition defaults.
 */
-@mixin transition(
-  $duration: 250ms,
-  $timing: ease-in-out
-) {
+@mixin transition($duration: 250ms,
+  $timing: ease-in-out) {
   transition-duration: $duration;
   transition-timing-function: $timing;
+}
+
+/**
+*Applies the animated champagne-gold hover gradient.
+*/
+@mixin hover-light {
+  background-image: linear-gradient(90deg,
+      map.get($hover-line, gold-dark) 0%,
+      map.get($hover-line, gold-deep) 12%,
+      map.get($hover-line, gold) 25%,
+      map.get($hover-line, champagne) 37%,
+      map.get($hover-line, ivory) 45%,
+      map.get($hover-line, white) 50%,
+      map.get($hover-line, ivory) 55%,
+      map.get($hover-line, champagne) 63%,
+      map.get($hover-line, gold) 75%,
+      map.get($hover-line, gold-deep) 88%,
+      map.get($hover-line, gold-dark) 100%);
+  background-size: 200% 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 /**
