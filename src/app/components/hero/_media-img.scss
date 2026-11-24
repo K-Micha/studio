@@ -10,6 +10,13 @@
 
                 &__content {
                     top: calc(86px + 5%);
+                    display: inline-flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    flex-wrap: nowrap;
+                    height: clamp(540px, 70dvh, 760px);
+                    min-height: 0;
                 }
             }
         }
