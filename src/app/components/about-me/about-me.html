@@ -1,1 +1,33 @@
-<p>about-me works!</p>
+@if (profile(); as data) {
+<section class="profile" [class.profile--expanded]="expanded()">
+    <div class="profile__layout">
+        <div class="profile__visual">
+            <img class="profile__image" [src]="data.image" [alt]="data.title" loading="lazy">
+        </div>
+
+        <div class="profile__content">
+            <p class="profile__eyebrow">{{ data.eyebrow }}</p>
+
+            <h2 class="profile__title">{{ data.title }}</h2>
+
+            <p class="profile__description">
+                {{ data.description }}
+            </p>
+
+            <div class="profile__details">
+                <div class="profile__details-inner">
+                    <p class="profile__description">
+                        {{ data.fullDescription }}
+                    </p>
+                </div>
+            </div>
+
+            <button class="profile__button" type="button" [attr.aria-expanded]="expanded()" (click)="toggleDetails()">
+                <span class="profile__button-text">
+                    {{ expanded() ? 'SHOW LESS' : 'MORE ABOUT ME' }}
+                </span>
+            </button>
+        </div>
+    </div>
+</section>
+}

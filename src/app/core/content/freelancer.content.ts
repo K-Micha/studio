@@ -53,5 +53,18 @@ export const FREELANCER_CONTENT = {
         image: 'assets/img/eyes.webp'
       }
     ]
+  },
+  about: {
+      image: 'assets/img/lisa.png',
+      eyebrow: 'ABOUT ME',
+      title: "Hi, I'm Lisa",
+      description: "I'm a freelance makeup artist with a passion for beauty, individuality and creative expression. I create personalized looks that highlight your natural beauty and reflect your personality – with attention to detail, high-quality products and a professional, relaxed approach.",
+      fullDescription: `Every client brings a unique personality and vision.
+                        My goal is to create a look that feels authentic, beautiful and
+                        comfortable. From the first consultation to the finishing touches,
+                        I take the time to understand your wishes and bring them to life.
+                        Whether it's your wedding day, a professional photoshoot or a
+                        special occasion, I approach every project with creativity,
+                        precision and a genuine passion for makeup artistry.`
   }
 };

@@ -1,3 +1,4 @@
+
 import { computed, inject, Injectable } from '@angular/core';
 import { WebsiteModeService } from './website-mode.service';
 import { FREELANCER_CONTENT } from './content/freelancer.content';
@@ -21,4 +22,7 @@ export class WebsiteContentService {
 
   readonly hero = computed<HeroConfig>(() => this.content().hero);
   readonly services = computed(() => this.content().services);
+  readonly about = computed(() =>
+    this.mode.freelancer() ? FREELANCER_CONTENT.about : null
+  );
 }
