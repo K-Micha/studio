@@ -1,21 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Header } from './components/header/header';
-import { Hero } from './components/hero/hero';
-import { Footer } from './components/footer/footer';
 import { WebsiteModeService } from './core/website-mode.service';
 import { WebsiteContentService } from './core/website-content.service';
-import { Touch } from './animations/touch/touch';
-import { Services } from './components/services/services';
-import { DemoAside } from './demo/demo-aside/demo-aside';
-import { Icons } from './shared/icons/icons';
+import { SHARED_IMPORTS, FREELANCER_IMPORTS } from './imports';
 
 /**
 *Root component of the StudioFlow website.
 */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Hero, Footer, Touch, Services, DemoAside, Icons],
+  imports: [
+    ...SHARED_IMPORTS,
+    ...FREELANCER_IMPORTS
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
