@@ -1,0 +1,293 @@
+@use '../../../scss/abstract/variables' as *;
+@use '../../../scss/components/carousel';
+
+.reviews {
+    width: 100%;
+    padding: 64px 40px;
+    box-sizing: border-box;
+    color: #29231f;
+    overflow: hidden;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 32px;
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto 48px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 1.1;
+    }
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &__average {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    &__stars {
+        display: flex;
+        align-items: center;
+    }
+
+    &__total {
+        margin: 0;
+        color: #757575;
+        font-size: 14px;
+        font-style: italic;
+    }
+}
+
+.cards {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    &__viewport {
+        width: 100%;
+        overflow: hidden;
+        touch-action: pan-y;
+        cursor: grab;
+        user-select: none;
+
+        &:active {
+            cursor: grabbing;
+        }
+    }
+
+    &__track {
+        display: flex;
+        align-items: stretch;
+        gap: 20px;
+        width: 100%;
+        min-height: 0;
+        transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
+
+        &--dragging {
+            transition: none;
+        }
+    }
+
+    &__track>.card {
+        position: relative;
+        top: auto;
+        left: auto;
+        flex: 0 0 calc((100% + 20px) / var(--visible-count) - 20px);
+        width: auto;
+        height: auto;
+        min-width: 0;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+}
+
+.card {
+    padding: 24px;
+    box-sizing: border-box;
+    border: 1px solid #dedede;
+    border-radius: 16px;
+    background: #F5F6F7;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    &__avatar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(196, 170, 127, 0.55);
+        border-radius: 50%;
+        background: linear-gradient(145deg,
+                #ead9bd 0%,
+                #e4d0ae 38%,
+                #d8be92 68%,
+                #c9aa78 100%);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 248, 236, 0.55),
+            inset 0 -2px 4px rgba(120, 88, 44, 0.18),
+            0 2px 6px rgba(0, 0, 0, 0.14),
+            0 0 0 0.5px rgba(255, 255, 255, 0.08);
+        color: #34271d;
+        overflow: visible;
+        isolation: isolate;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: -7px;
+            z-index: -1;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(214, 187, 138, 0.3) 0%,
+                    rgba(214, 187, 138, 0.16) 45%,
+                    rgba(214, 187, 138, 0) 75%);
+            filter: blur(3px);
+            pointer-events: none;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at 30% 28%,
+                    rgba(255, 255, 255, 0.28) 0%,
+                    rgba(255, 255, 255, 0.1) 22%,
+                    rgba(255, 255, 255, 0) 48%);
+            pointer-events: none;
+        }
+    }
+
+    &__initials {
+        position: relative;
+        z-index: 1;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: #4a392a;
+        text-shadow:
+            0 1px 0 rgba(255, 248, 236, 0.35),
+            0 -1px 0 rgba(120, 88, 44, 0.12);
+    }
+
+    &__person {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    &__name {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    &__service {
+        margin: 0;
+        color: #757575;
+        font-size: 13px;
+        line-height: 1.3;
+    }
+
+    &__stars {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-shrink: 0;
+        margin-left: auto;
+    }
+
+    &__text {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.6;
+        overflow-wrap: break-word;
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 24px;
+    margin-top: 32px;
+
+    &__dot {
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        border: 1px solid #a6a6a6;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+
+        &--active {
+            background: #777;
+            border-color: #777;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #29231f;
+            outline-offset: 4px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .reviews {
+        padding: 48px 20px;
+
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        &__title {
+            font-size: 36px;
+        }
+    }
+
+    .summary {
+        &__average {
+            font-size: 40px;
+        }
+    }
+
+    .card {
+        padding: 20px;
+
+        &__text {
+            font-size: 15px;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cards__track {
+        transition: none;
+    }
+}

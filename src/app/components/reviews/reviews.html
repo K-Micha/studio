@@ -1,6 +1,6 @@
-<section class="reviews">
+<section #reviewSection class="reviews">
     <header class="reviews__header">
-        <h2 class="reviews__title">Client Reviews</h2>
+        <h2 class="reviews__title">Reviews</h2>
 
         <div class="summary">
             <p class="summary__average">
@@ -9,7 +9,7 @@
 
             <div class="summary__details">
                 <div class="summary__stars">
-                    <app-star />
+                    <app-star [rating]="ergebniss() ?? 0" />
                 </div>
 
                 <p class="summary__total">
@@ -19,34 +19,45 @@
         </div>
     </header>
 
-    <div class="cards">
-        @for (review of reviews; track review.id) {
-        <article class="card">
-            <header class="card__header">
-                <div class="card__avatar">
-                    <span class="card__initials">
-                        {{ review.initials }}
-                    </span>
-                </div>
+    <div class="cards sf-carousel">
+        <div class="cards__viewport" (pointerdown)="onPointerDown($event)" (pointermove)="onPointerMove($event)"
+            (pointerup)="onPointerUp($event)" (pointercancel)="onPointerCancel()">
+            <div class="cards__track sf-carousel__track" [class.cards__track--dragging]="dragging()"
+                [style.--visible-count]="visibleCount()"
+                [style.transform]="'translate3d(' + trackOffset() + 'px, 0, 0)'">
+                @for (review of reviews; track review.id) {
+                <article class="card sf-carousel__slide">
+                    <header class="card__header">
+                        <div class="card__avatar">
+                            <span class="card__initials">
+                                {{ review.initials }}
+                            </span>
+                        </div>
 
-                <div class="card__person">
-                    <h3 class="card__name">{{ review.name }}</h3>
-                    <p class="card__service">{{ review.service }}</p>
-                </div>
+                        <div class="card__person">
+                            <h3 class="card__name">{{ review.name }}</h3>
+                            <p class="card__service">{{ review.service }}</p>
+                        </div>
 
-                <div class="card__stars">
-                    <!-- Star-rating: review.rating -->
-                </div>
-            </header>
+                        <div class="card__stars">
+                            <app-star [rating]="review.rating" />
+                        </div>
+                    </header>
 
-            <p class="card__text">
-                “{{ review.text }}”
-            </p>
-        </article>
-        }
+                    <p class="card__text">
+                        “{{ review.text }}”
+                    </p>
+                </article>
+                }
+            </div>
+        </div>
     </div>
 
     <nav class="pagination" aria-label="Review pages">
-        <!-- Dynamic pagination buttons -->
+        @for (index of pages(); track index) {
+        <button class="pagination__dot" type="button" [class.pagination__dot--active]="page() === index"
+            [attr.aria-label]="'Page ' + (index + 1)" [attr.aria-current]="page() === index ? 'page' : null"
+            (click)="goToPage(index)"></button>
+        }
     </nav>
 </section>
