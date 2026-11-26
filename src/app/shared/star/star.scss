@@ -1,0 +1,45 @@
+@use '../../../scss/abstract/functions' as fct;
+@use '../../../scss/abstract/mixins' as mx;
+
+.stars {
+    position: relative;
+    display: inline-block;
+    width: max-content;
+    line-height: 0;
+
+    &__base {
+        display: flex;
+        align-items: center;
+        gap: fct.size(4);
+        width: max-content;
+        color: #D5D0C8;
+
+        &--gold {
+            color: fct.color(nav-hover);
+        }
+    }
+
+    &__icon {
+        display: block;
+        width: fct.size(20);
+        height: fct.size(20);
+        flex-shrink: 0;
+        fill: currentColor;
+    }
+
+    &__fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: width 350ms ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__fill {
+            transition: none;
+        }
+    }
+}
