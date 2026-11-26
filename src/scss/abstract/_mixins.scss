@@ -32,7 +32,7 @@
 }
 
 /**
-*Applies the animated champagne-gold hover gradient.
+*Applies the existing champagne-gold hover gradient.
 */
 @mixin hover-light {
   background-image: linear-gradient(90deg,
@@ -49,6 +49,20 @@
       map.get($hover-line, gold-dark) 100%);
   background-size: 200% 100%;
   background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/**
+*Applies a rich gold gradient to active rating stars.
+*/
+@mixin star-gold {
+  background-image: linear-gradient(135deg,
+      map.get($hover-line, gold-deep) 0%,
+      map.get($hover-line, gold) 25%,
+      map.get($hover-line, champagne) 48%,
+      map.get($hover-line, gold) 72%,
+      map.get($hover-line, gold-deep) 100%);
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
