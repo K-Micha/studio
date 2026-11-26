@@ -1,0 +1,52 @@
+<section class="reviews">
+    <header class="reviews__header">
+        <h2 class="reviews__title">Client Reviews</h2>
+
+        <div class="summary">
+            <p class="summary__average">
+                {{ ergebniss()?.toFixed(1) ?? '–' }}
+            </p>
+
+            <div class="summary__details">
+                <div class="summary__stars">
+                    <app-star />
+                </div>
+
+                <p class="summary__total">
+                    Based on {{ totalReviews }} reviews
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <div class="cards">
+        @for (review of reviews; track review.id) {
+        <article class="card">
+            <header class="card__header">
+                <div class="card__avatar">
+                    <span class="card__initials">
+                        {{ review.initials }}
+                    </span>
+                </div>
+
+                <div class="card__person">
+                    <h3 class="card__name">{{ review.name }}</h3>
+                    <p class="card__service">{{ review.service }}</p>
+                </div>
+
+                <div class="card__stars">
+                    <!-- Star-rating: review.rating -->
+                </div>
+            </header>
+
+            <p class="card__text">
+                “{{ review.text }}”
+            </p>
+        </article>
+        }
+    </div>
+
+    <nav class="pagination" aria-label="Review pages">
+        <!-- Dynamic pagination buttons -->
+    </nav>
+</section>

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { WebsiteModeService } from './core/website-mode.service';
 import { WebsiteContentService } from './core/website-content.service';
 import { SHARED_IMPORTS, FREELANCER_IMPORTS } from './imports';
+import { Reviews } from './components/reviews/reviews';
 
 /**
 *Root component of the StudioFlow website.
@@ -10,8 +11,9 @@ import { SHARED_IMPORTS, FREELANCER_IMPORTS } from './imports';
   selector: 'app-root',
   imports: [
     ...SHARED_IMPORTS,
-    ...FREELANCER_IMPORTS
-  ],
+    ...FREELANCER_IMPORTS,
+    Reviews
+],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

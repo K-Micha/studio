@@ -7,6 +7,7 @@ import { DemoAside } from './demo/demo-aside/demo-aside';
 import { Icons } from './shared/icons/icons';
 import { Services } from './components/services/services';
 import { AboutMe } from './components/about-me/about-me';
+import { Reviews } from './components/reviews/reviews';
 
 /**
 *Defines components shared by all website types.
@@ -26,7 +27,8 @@ export const SHARED_IMPORTS = [
 */
 export const FREELANCER_IMPORTS = [
     Services,
-    AboutMe
+    AboutMe,
+    Reviews
 ];
 
 /**
