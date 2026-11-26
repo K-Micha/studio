@@ -1,7 +1,7 @@
 @if (profile(); as data) {
 <section class="profile" [class.profile--expanded]="expanded()">
     <div class="profile__layout">
-        <div class="profile__visual">
+        <div class="profile__visual" (transitionend)="onAnimationEnd($event)">
             <img class="profile__image" [src]="data.image" [alt]="data.title" loading="lazy">
         </div>
 
@@ -14,7 +14,7 @@
                 {{ data.description }}
             </p>
 
-            <div class="profile__details">
+            <div class="profile__details" (transitionend)="onAnimationEnd($event)">
                 <div class="profile__details-inner">
                     <p class="profile__description">
                         {{ data.fullDescription }}
@@ -22,7 +22,8 @@
                 </div>
             </div>
 
-            <button class="profile__button" type="button" [attr.aria-expanded]="expanded()" (click)="toggleDetails()">
+            <button class="profile__button" type="button" [attr.aria-expanded]="expanded()"
+                [attr.aria-disabled]="animating()" (click)="toggleDetails()">
                 <span class="profile__button-text">
                     {{ expanded() ? 'SHOW LESS' : 'MORE ABOUT ME' }}
                 </span>
