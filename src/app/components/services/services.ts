@@ -4,7 +4,6 @@ import { WebsiteModeService } from '../../core/website-mode.service';
 import { PointerGesture } from '../../shared/pointer/pointer';
 import { CircleArrow } from '../../shared/icons/circle-arrow/circle-arrow';
 
-
 /**
 *Displays the configured services for the current website.
 */
@@ -29,6 +28,7 @@ export class Services {
   readonly content = this.websiteContent.services;
   readonly activeIndex = signal(1);
   readonly scrollHighlight = signal(false);
+  readonly indicatorHover = signal(0);
 
   readonly visibleItems = computed(() =>
     this.content().items.slice(0, this.mode.serviceCount())
@@ -93,7 +93,41 @@ export class Services {
   */
   selectCarouselItem(index: number): void {
     if (index === this.activeIndex()) return;
+    const position = this.carouselPosition(index);
+    this.animateIndicator(position > 0 ? 1 : -1);
     this.activeIndex.set(index);
+  }
+
+  /**
+  *Animates the indicator circles in the navigation direction.
+  *@param direction - Direction of the carousel movement.
+  */
+  private animateIndicator(direction: number): void {
+    const track = this.section()?.nativeElement.querySelector('.carousel-indicator__track');
+    if (!(track instanceof HTMLElement)) return;
+    track.getAnimations().forEach(animation => animation.cancel());
+    track.animate(
+      [{ transform: 'translateX(0)' }, { transform: `translateX(${-direction * 30}px)` }],
+      { duration: 340, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+    );
+  }
+
+  /**
+  *Updates the indicator according to the mouse position.
+  *@param event - Pointer event.
+  */
+  private updateIndicatorHover(event: PointerEvent): void {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const wrapper = target.closest('.carousel__wrapper');
+    const list = target.closest('.carousel__list');
+    if (!wrapper || !list) {
+      this.indicatorHover.set(0);
+      return;
+    }
+    const rect = list.getBoundingClientRect();
+    const distance = event.clientX - (rect.left + rect.width / 2);
+    this.indicatorHover.set(distance < -100 ? -1 : distance > 100 ? 1 : 0);
   }
 
   /**
@@ -122,10 +156,14 @@ export class Services {
   }
 
   /**
-  *Updates the current touch gesture.
+  *Updates touch gestures or mouse hover indicators.
   *@param event - Pointer event.
   */
   onCarouselPointerMove(event: PointerEvent): void {
+    if (event.pointerType === 'mouse') {
+      this.updateIndicatorHover(event);
+      return;
+    }
     if (event.pointerType !== 'touch') return;
     this.pointer.move(event);
   }
@@ -163,10 +201,11 @@ export class Services {
   }
 
   /**
-  *Clears the pointer state when leaving the services section.
+  *Clears the pointer and indicator state when leaving the section.
   */
   onPointerLeave(): void {
     this.pointerInside.set(false);
+    this.indicatorHover.set(0);
   }
 
   /**

@@ -178,6 +178,49 @@
     }
 }
 
+.carousel-indicator {
+    position: relative;
+    width: 72px;
+    height: 16px;
+    margin: 24px auto 0;
+    overflow: hidden;
+    pointer-events: none;
+
+    &__track {
+        position: absolute;
+        top: 2px;
+        left: -30px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        width: max-content;
+    }
+
+    &__dot,
+    &__active {
+        display: block;
+        flex: 0 0 12px;
+        width: 12px;
+        height: 12px;
+        box-sizing: border-box;
+        border-radius: 50%;
+    }
+
+    &__dot {
+        border: 1px solid #a6a6a6;
+        background: transparent;
+    }
+
+    &__active {
+        position: absolute;
+        top: 2px;
+        left: 30px;
+        border: 1px solid #777;
+        background: #777;
+        transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+}
+
 @media (max-width: 767px) {
     .services__container {
         padding-inline: 20px;
@@ -197,5 +240,9 @@
 @media (prefers-reduced-motion: reduce) {
     :is(.single__arrow, .grid__arrow, .carousel__arrow) {
         animation: none;
+    }
+
+    .carousel-indicator__active {
+        transition: none;
     }
 }
